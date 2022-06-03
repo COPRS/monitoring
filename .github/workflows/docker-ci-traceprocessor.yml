@@ -41,4 +41,4 @@ jobs:
           echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
 
       - name: Build with Maven
-        run: mvn clean deploy -DskipTests -Djib.dest-registry=${{ env.REGISTRY_BASE }} -Djib.dest-username=${{ env.REGISTRY_USER }} -Djib.dest-password=${{ env.REGISTRY_PWD }} -f trace-processor
+        run: mvn clean deploy -DskipTests -Djib.dest-registry=${{ env.REGISTRY_BASE }} -Djib.dest-username=${{ env.REGISTRY_USER }} -Djib.dest-password="${{ env.REGISTRY_PWD }}" -f trace-processor
