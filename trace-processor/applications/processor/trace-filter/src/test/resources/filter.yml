@@ -1,0 +1,10 @@
+filter:
+  rules:
+    - name: rule-1
+      conditions:
+        task.event: begin
+        output: toto
+    - name: rule-2
+      conditions:
+        task.event: begin
+        header.type: REPORT

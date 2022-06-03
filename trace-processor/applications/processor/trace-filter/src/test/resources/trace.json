@@ -1,0 +1,41 @@
+{
+  "header": {
+    "type": "REPORT",
+    "timestamp": "2021-08-30T15:02:24.125000Z",
+    "level": "INFO",
+    "mission": "S3",
+    "workflow": "NOMINAL"
+  },
+
+  "message": {
+    "content": "Start compression processing"
+  },
+
+  "task": {
+    "uid": "4cb9fa49-2c0a-4363-82c3-ea9ab223c53a",
+    "name": "CompressionProcessing",
+    "event": "begin",
+    "input": {},
+    "follows_from_task": "a66d3ac2-2483-4891-8151-1bc77e4296e8"
+  },
+
+  "kubernetes": {
+    "pod_name": "s1pro-compression-worker-0",
+    "namespace_name": "processing",
+    "pod_id": "d9e908c8-459c-410f-b538-18e3c442c877",
+    "labels": {
+      "app": "s1pro-compression-worker",
+      "controller-revision-hash": "s1pro-compression-worker-649db58b55",
+      "statefulset_kubernetes_io/pod-name": "s1pro-compression-worker-0",
+      "type": "processing"
+    },
+    "annotations": {
+      "cni_projectcalico_org/podIP": "10.244.56.3/32",
+      "cni_projectcalico_org/podIPs": "10.244.56.3/32",
+      "kubernetes_io/psp": "privileged"
+    },
+    "host": "ops-c1-wrapper-zip-0099",
+    "container_name": "s1pro-compression-worker",
+    "docker_id": "2dee31be4d19ae5d0e5347b9bf29327ea5b0385530bbfd4f88515536f60a0804"
+  }
+}
