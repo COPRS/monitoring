@@ -1,6 +1,10 @@
 name: Docker build
 
-on: [ push ]
+on:
+  push:
+    paths:
+      - 'trace-processor/**'
+      - '.github/workflows/docker-ci-traceprocessor.yml'
 
 env:
   REGISTRY_USER: ${{ secrets.ARTIFACTORY_USER }}
@@ -37,4 +41,4 @@ jobs:
           echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
 
       - name: Build with Maven
-        run: mvn clean deploy -DskipTests -Djib.dest-registry=${{ env.REGISTRY_BASE }} -Djib.dest-username=${{ env.REGISTRY_USER }} -Djib.dest-password=${{ env.REGISTRY_PWD }}
+        run: mvn clean deploy -DskipTests -Djib.dest-registry=${{ env.REGISTRY_BASE }} -Djib.dest-username=${{ env.REGISTRY_USER }} -Djib.dest-password=${{ env.REGISTRY_PWD }} -f trace-processor
