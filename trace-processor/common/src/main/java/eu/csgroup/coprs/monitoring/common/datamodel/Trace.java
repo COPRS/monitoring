@@ -1,6 +1,5 @@
 package eu.csgroup.coprs.monitoring.common.datamodel;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vladmihalcea.hibernate.type.json.JsonType;
 import lombok.*;
@@ -8,35 +7,43 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Entity
 @TypeDef(name = "json", typeClass = JsonType.class)
 public class Trace {
-    @Id
+    /*@Id
     @GeneratedValue
     @JsonIgnore
-    private Long id;
+    private Long id;*/
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn( name="headerId" )
+    @NotNull
+    @Valid
     private Header header;
 
-    //private Message message;
+    @NotNull
+    @Valid
+    private Message message;
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn( name="taskId" )
+    @NotNull
+    @Valid
     private Task task;
 
     @Type(type = "json")
     @Column(columnDefinition = "json")
     private String custom;
+
     @Type(type = "json")
     @Column(columnDefinition = "json")
+    @NotNull
     private String kubernetes;
 
 
@@ -44,43 +51,7 @@ public class Trace {
         this.custom = custom.toString();
     }
 
-    /*@JsonRawValue
-    public String getCustom() {
-        // default raw value: null or "[]"
-        return custom == null ? null : custom.toString();
-    }*/
-
     public void setKubernetes(JsonNode kubernetes) {
         this.kubernetes = kubernetes.toString();
     }
-
-    /*@JsonRawValue
-    public String getKubernetes() {
-        // default raw value: null or "[]"
-        return kubernetes == null ? null : kubernetes.toString();
-    }*/
-
-    /*public static JsonDeserializer<Trace> deserializer() {
-        return buildDeserializer(node -> {
-                final var header = Header.readHeader(node.get(HEADER));
-                final var message = Message.readMessage(node.get(MESSAGE));
-                final var task = Optional.of(node.get(TASK))
-                    .map(Task::readTask)
-                    .orElse(null);
-                final var custom = Optional.of(node.get(CUSTOM))
-                    //.map(Custom::readCustom)
-                    .map(JsonNode::asText)
-                    .orElse(null);
-                final var kubernetes =node.get(KUBERNETES).toString();
-
-                return new Trace(
-                    header,
-                    message,
-                    task,
-                    custom,
-                    kubernetes
-                );
-            }
-        );
-    }*/
 }

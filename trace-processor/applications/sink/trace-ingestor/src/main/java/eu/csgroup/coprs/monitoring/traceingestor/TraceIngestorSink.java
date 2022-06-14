@@ -28,6 +28,6 @@ public class TraceIngestorSink implements Consumer<Message<Trace>> {
 
     protected final void ingestLog(Trace trace) {
         System.out.println(trace.toString());
-        traceService.add(trace);
+        //traceService.add(trace);
     }
 }

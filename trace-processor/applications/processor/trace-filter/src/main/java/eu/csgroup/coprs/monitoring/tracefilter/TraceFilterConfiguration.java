@@ -5,30 +5,31 @@ import java.util.List;
 import java.util.function.Function;
 
 import eu.csgroup.coprs.monitoring.common.message.FilteredTrace;
-import eu.csgroup.coprs.monitoring.tracefilter.rule.FilteringRule;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+import eu.csgroup.coprs.monitoring.tracefilter.json.JsonValidator;
+import eu.csgroup.coprs.monitoring.tracefilter.rule.FilterGroup;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.messaging.Message;
 
 @Configuration
-@EnableConfigurationProperties({TraceFilterProperties.class, FilteringRule.class})
+@EnableConfigurationProperties({TraceFilterProperties.class, FilterGroup.class})
+@Import(JsonValidator.class)
 public class TraceFilterConfiguration {
 
     @Bean
     public ObjectMapper traceMapper () {
         return JsonMapper.builder()
-            .findAndAddModules()
-            .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-            .build();
+                .findAndAddModules()
+                .build();
     }
 
     @Bean
-    public Function<Message<String>, List<Message<FilteredTrace>>> traceFilter(ObjectMapper jsonMapper, FilteringRule filters) {
-       return new TraceFilterProcessor(jsonMapper, filters);
+    public Function<Message<String>, List<Message<FilteredTrace>>> traceFilter(JsonValidator jsonMapper, FilterGroup filterGroup) {
+       return new TraceFilterProcessor(jsonMapper, filterGroup);
     }
 
 }

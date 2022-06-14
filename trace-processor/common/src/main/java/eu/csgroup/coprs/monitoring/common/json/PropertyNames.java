@@ -51,4 +51,6 @@ public interface PropertyNames {
     String CONTAINER_NAME = "container_name";
     String DOCKER_ID = "docker_id";
 
+    String UID_REGEX = "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}";
+
 }

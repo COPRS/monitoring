@@ -3,25 +3,30 @@ package eu.csgroup.coprs.monitoring.common.datamodel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+import javax.validation.constraints.NotNull;
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class EndTask extends Task {
+    @NotNull
     private Status status;
 
+    @NotNull
     private Integer errorCode;
 
     //TODO Set as Duration and not double
+    @NotNull
     private Double durationInSeconds;
 
+    @NotNull
     private Object output;
 
+    @NotNull
     private Object quality;
 
 
@@ -36,7 +41,7 @@ public class EndTask extends Task {
         return output == null ? null : output.toString();
     }
 
-    public void setquality(JsonNode quality) {
+    public void setQuality(JsonNode quality) {
         this.quality = quality;
     }
 

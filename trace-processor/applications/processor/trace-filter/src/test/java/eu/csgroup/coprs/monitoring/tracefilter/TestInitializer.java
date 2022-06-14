@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.monitoring.tracefilter;
 
+import org.apache.commons.io.IOUtils;
 import org.junit.rules.ExternalResource;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
@@ -13,8 +14,13 @@ public class TestInitializer extends ExternalResource implements ApplicationCont
 
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
-        TestPropertyValues.of(
-            "filter.ruleLocation=classpath:filter.yml"
-        ).applyTo(applicationContext.getEnvironment());
+        try {
+            TestPropertyValues.of(
+                    "filter.path=classpath:filter.yaml"
+            ).applyTo(applicationContext.getEnvironment());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

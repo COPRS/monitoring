@@ -1,17 +1,19 @@
 package eu.csgroup.coprs.monitoring.common.datamodel;
 
-import eu.csgroup.coprs.monitoring.common.json.PropertyNames;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.JsonNode;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record Message (
-    @JsonProperty(PropertyNames.CONTENT)
-    String content
-) {
-    public static Message readMessage(JsonNode node) {
-        final var content = node.get(PropertyNames.CONTENT).asText();
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-        return new Message(content);
-    }
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Message {
+
+    @NotNull
+    @Size(max=1024, message="Message content cannot exceed 1024 characters")
+    private String content;
 
 }

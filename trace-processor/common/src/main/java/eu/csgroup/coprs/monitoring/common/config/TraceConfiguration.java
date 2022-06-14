@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /*@Service*/
 @Configuration
-@EnableJpaRepositories(basePackages = "com.csgroup.s2pdgs.common.jpa")
-@EntityScan(basePackages = "com.csgroup.s2pdgs.common.datamodel")
+@EnableJpaRepositories(basePackages = "eu.csgroup.coprs.common.jpa")
+@EntityScan(basePackages = "eu.csgroup.coprs.common.datamodel")
 @EnableTransactionManagement
 public class TraceConfiguration {
     @Autowired
@@ -22,7 +22,7 @@ public class TraceConfiguration {
         return repository.findAll();
     }
 
-    public long add(Trace trace) {
+    /*public long add(Trace trace) {
         return repository.save(trace).getId();
-    }
+    }*/
 }

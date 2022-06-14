@@ -46,15 +46,19 @@
         <maven-project-info-reports-plugin.version>3.1.2</maven-project-info-reports-plugin.version>
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
 
-        <jib-maven-plugin.version>3.1.4</jib-maven-plugin.version>
+        <jib-maven-plugin.version>3.2.1</jib-maven-plugin.version>
         <spring-cloud-dataflow-apps-generator-plugin.version>1.0.3</spring-cloud-dataflow-apps-generator-plugin.version>
         <spring-cloud-dataflow-apps-docs-plugin.version>1.0.3</spring-cloud-dataflow-apps-docs-plugin.version>
         <spring-cloud-dataflow-apps-metadata-plugin.version>1.0.3</spring-cloud-dataflow-apps-metadata-plugin.version>
 
         <!-- == Spring == -->
         <spring-boot.version>2.6.3</spring-boot.version>
+        <spring-data.version>${spring-boot.version}</spring-data.version>
         <spring-cloud.version>2021.0.0</spring-cloud.version>
         <reactor.version>3.4.6</reactor.version>
+
+        <!-- == Hibernate == -->
+        <hibernate-core.version>5.6.4.Final</hibernate-core.version>
 
         <!-- We want to have a version of kafka-clients which corrects this issue:
              https://issues.apache.org/jira/browse/KAFKA-13406
@@ -105,6 +109,19 @@
             </dependency>
 
             <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>${spring-data.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate-core.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
@@ -139,6 +156,13 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <!-- Logging -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-log4j2</artifactId>
+                <version>${spring-boot.version}</version>
             </dependency>
 
             <!-- Tests -->
@@ -183,9 +207,32 @@
 
     <dependencies>
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+
+        <!-- Tests -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

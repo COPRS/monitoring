@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "filter")
+@ConfigurationProperties(prefix = "trace-filter")
 public class TraceFilterProperties {
     private String ruleLocation;
 }
