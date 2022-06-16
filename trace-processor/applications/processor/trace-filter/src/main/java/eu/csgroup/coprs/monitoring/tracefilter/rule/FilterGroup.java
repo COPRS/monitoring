@@ -16,7 +16,7 @@ import java.util.function.Function;
 
 @Data
 @Configuration
-@PropertySource(name = "rules", value = "${filter.path}", factory = ReloadableYamlPropertySourceFactory.class)
+@PropertySource(name = "filterGroup", value = "${filter.path}", factory = ReloadableYamlPropertySourceFactory.class)
 @ConfigurationProperties()
 @Slf4j
 public class FilterGroup implements Function<JsonNode, Optional<Filter>> {

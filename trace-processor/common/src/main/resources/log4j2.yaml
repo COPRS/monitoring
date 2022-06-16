@@ -10,7 +10,7 @@ Configuration:
   status: WARN
 
   thresholdFilter:
-    level: DEBUG
+    level: TRACE
 
   Appenders:
 
@@ -42,7 +42,7 @@ Configuration:
 
     Logger:
       - name: eu.csgroup.coprs
-        level: DEBUG
+        level: TRACE
         additivity: false
         AppenderRef:
           - ref: STDOUT

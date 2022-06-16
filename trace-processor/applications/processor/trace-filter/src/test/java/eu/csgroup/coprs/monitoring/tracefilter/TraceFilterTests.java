@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.slf4j.LoggerFactory.getLogger;
 
+import eu.csgroup.coprs.monitoring.common.bean.ReloadableBeanFactory;
 import eu.csgroup.coprs.monitoring.tracefilter.json.JsonValidator;
 import eu.csgroup.coprs.monitoring.tracefilter.rule.FilterGroup;
 import org.apache.commons.io.IOUtils;
@@ -37,6 +38,9 @@ public class TraceFilterTests {
     @Autowired
     private JsonValidator jsonValidator;
 
+    @Autowired
+    private ReloadableBeanFactory factory;
+
     @Test
     public void testFilter() {
         System.out.println();
@@ -46,7 +50,7 @@ public class TraceFilterTests {
 
     @Test
     public void testNominal () {
-        final var processor = conf.traceFilter(jsonValidator, rules);
+        final var processor = conf.traceFilter(jsonValidator, rules, factory);
         // Given
         /*final var mapper = Mappers.testMapper()
             .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
@@ -73,7 +77,7 @@ public class TraceFilterTests {
     @Test
     public void testPartial () {
         // Given
-        final var processor = conf.traceFilter(jsonValidator, rules);
+        final var processor = conf.traceFilter(jsonValidator, rules, null);
         final var content = getContent("trace-partial.json");
 
         // When

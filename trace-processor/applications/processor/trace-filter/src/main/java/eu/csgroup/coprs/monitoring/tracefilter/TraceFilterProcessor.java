@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
+import eu.csgroup.coprs.monitoring.common.bean.ReloadableBeanFactory;
 import eu.csgroup.coprs.monitoring.common.message.FilteredTrace;
 import eu.csgroup.coprs.monitoring.common.datamodel.Trace;
 import eu.csgroup.coprs.monitoring.tracefilter.json.JsonValidationException;
@@ -22,11 +23,11 @@ public class TraceFilterProcessor
 
     private final JsonValidator jsonValidator;
 
-    private final FilterGroup filterGroup;
+    private final ReloadableBeanFactory factory;
 
-    public TraceFilterProcessor(JsonValidator jsonValidator, FilterGroup filterGroup) {
+    public TraceFilterProcessor(JsonValidator jsonValidator, FilterGroup filterGroup, ReloadableBeanFactory factory) {
         this.jsonValidator = jsonValidator;
-        this.filterGroup = filterGroup;
+        this.factory= factory;
     }
 
     public List<Message<FilteredTrace>> apply(Message<String> json) {
@@ -40,7 +41,7 @@ public class TraceFilterProcessor
 
             JsonNode jsonNode = jsonValidator.getMapper().readTree(json.getPayload());
 
-            var ruleMatch = filterGroup.apply(jsonNode);
+            var ruleMatch = factory.getBean(FilterGroup.class).apply(jsonNode);
 
             ruleMatch.ifPresentOrElse(filter -> traceLog.append("matching rule ").append(filter),
                 () -> traceLog.append("no matching rule")
@@ -54,15 +55,10 @@ public class TraceFilterProcessor
                 .orElseGet(Collections::emptyList);
         } catch (JsonProcessingException | JsonValidationException e) {
             log.error("Wrong trace format (%s)".formatted(json.getPayload()), e);
-            throw new RuntimeException(e);
+            return Collections.emptyList();
         } catch (Exception e) {
-            final var errorMessage = new StringBuilder("Error occurred handling trace: ");
-            if (traceUid != null) {
-                errorMessage.append(traceUid);
-            } else {
-                errorMessage.append(json.getPayload());
-            }
-            throw new RuntimeException(errorMessage.toString(), e);
+            final var errorMessage = "Error occurred handling trace \n%s: ".formatted(json.getPayload());
+            throw new RuntimeException(errorMessage, e);
         }
     }
 }

@@ -8,15 +8,22 @@ spring:
   cloud:
     stream:
       function:
+        definition: trace-filter
         bindings:
-          process-in-0: input
-          process-out-0: output
+          trace-filter-in-0: input
+          trace-filter-out-0: output
+
+logging:
+  level:
+    eu:
+      csgroup:
+        coprs: TRACE
 
 info:
   app:
-    description: @project.description@
-    name: @project.artifactId@
-    version: @project.version@
+    description: ^project.description^
+    name: ^project.artifactId^
+    version: ^project.version^
 
 ---
 
