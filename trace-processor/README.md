@@ -32,7 +32,7 @@ Rules section can be composed of one or more rule. Each rule is a key/value asso
     - regular expression (i.e. compression-.*)
     - multiple value (i.e. compression-.*|generation) separated by a '|' character
 
-To define regular expression please refer to [Java regex](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html). For special characters as of '.', '*' and so on you have to escape them with '\' characters. For example to escape dot and use it as simple character use the following syntax: '\.'. List of special characters is the following:
+To define regular expression please refer to [Java regex](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html). For special characters as of '.', '*' and so on you have to escape them with '\\' characters. For example to escape dot and use it as simple character use the following syntax: '\.'. List of special characters is the following:
 - \
 - .
 - ?
