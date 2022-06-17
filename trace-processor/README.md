@@ -49,8 +49,20 @@ To define regular expression please refer to [Java regex](https://docs.oracle.co
 - !
 - :
 
+### Behavior
+
 The behavior of the filter is to take in the order each filter definition and find if one filter can be associated to the trace. A filter is associated to the trace if all rules can be validated. A rule is valid if the key path exists in the trace structure and if the value correspond to the one available in the trace. 
 Once a filter match the trace the others are not checked. If no filter can be associated, the trace is 'sent to the trash'.
+
+
+Trace filter is also able to detect file changes and to reload configuration. Changes are applied on start of trace check and not during a trace check. File changes is checked every minute. A log is displayed on the console when configuration file is reloaded (Configuration file '<file-path>' loaded)
+
+
+Before filters are applied to a trace, the application will first check that the trace is valid. A trace is valid if :
+- all required field are set
+- format for date field correspond to the one defined
+- format for uid field correspond to the one defined
+- field limited in size does not exceed the quota.
 
 ### Execution
 

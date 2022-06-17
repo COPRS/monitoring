@@ -25,7 +25,9 @@ public class TraceFilterProcessor
 
     private final ReloadableBeanFactory factory;
 
-    public TraceFilterProcessor(JsonValidator jsonValidator, FilterGroup filterGroup, ReloadableBeanFactory factory) {
+    private String lastProcessedRawTrace;
+
+    public TraceFilterProcessor(JsonValidator jsonValidator, ReloadableBeanFactory factory) {
         this.jsonValidator = jsonValidator;
         this.factory= factory;
     }
@@ -33,7 +35,11 @@ public class TraceFilterProcessor
     public List<Message<FilteredTrace>> apply(Message<String> json) {
         String traceUid = null;
         try {
-            log.debug("Handle new trace");
+            if (lastProcessedRawTrace != null && lastProcessedRawTrace.equals(json.getPayload())) {
+                log.warn("Retry last failed trace");
+            } else {
+                log.debug("Handle new trace");
+            }
             final var trace = jsonValidator.readAndValidate(json.getPayload(), Trace.class);
             traceUid = trace.getTask().getUid();
             var traceLog = new StringBuilder("Trace: ").append(traceUid)
@@ -57,6 +63,7 @@ public class TraceFilterProcessor
             log.error("Wrong trace format (%s)".formatted(json.getPayload()), e);
             return Collections.emptyList();
         } catch (Exception e) {
+            lastProcessedRawTrace = json.getPayload();
             final var errorMessage = "Error occurred handling trace \n%s: ".formatted(json.getPayload());
             throw new RuntimeException(errorMessage, e);
         }

@@ -26,7 +26,15 @@ public class ReloadableBeanFactory {
     public <T> T getBean(Class<T> className) {
         return getBeanConfiguration(className)
                 .flatMap(beanConfig -> {
-                    final var reloadableBean = findReloadablePropertySource(beanConfig.getName());
+                    final var psAnno = className.getAnnotation(org.springframework.context.annotation.PropertySource.class);
+                    String psName = null;
+                    if (psAnno != null && psAnno.name() != null) {
+                        psName = psAnno.name();
+                    } else {
+                        psName = beanConfig.getName();
+                    }
+
+                    final var reloadableBean = findReloadablePropertySource(psName);
                     return reloadableBean.map(rb -> this.reload(beanConfig, rb, className));
                 }
             ).orElse(null);
@@ -69,9 +77,7 @@ public class ReloadableBeanFactory {
 
     private PropertySource findPropertySource (String propertySourceName) {
         return getPropertySources()
-                .peek(ps -> System.out.println(ps.getClass().toString()))
                 .filter(ps -> propertySourceName.equals(ps.getName()))
-                .peek(ps -> System.out.println("@ " + ps))
                 .findFirst()
                 .orElse(null);
     }

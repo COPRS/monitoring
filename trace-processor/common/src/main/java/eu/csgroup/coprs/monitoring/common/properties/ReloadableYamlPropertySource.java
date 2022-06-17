@@ -61,7 +61,7 @@ public class ReloadableYamlPropertySource extends EnumerablePropertySource imple
                 ConfigurationBuilderEvent.RESET,
                 (EventListener<Event>) event -> {
                     dirty.set(true);
-                    log.info("Configuration for file '%s' loaded".formatted(path));
+                    log.info("Configuration file '%s' loaded".formatted(path));
                 });
 
         // Create expression engine compatible with spring key property

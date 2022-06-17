@@ -29,8 +29,8 @@ public class TraceFilterConfiguration {
     }
 
     @Bean(name = "trace-filter")
-    public Function<Message<String>, List<Message<FilteredTrace>>> traceFilter(JsonValidator jsonMapper, FilterGroup filterGroup, ReloadableBeanFactory factory) {
-       return new TraceFilterProcessor(jsonMapper, filterGroup, factory);
+    public Function<Message<String>, List<Message<FilteredTrace>>> traceFilter(JsonValidator jsonMapper, ReloadableBeanFactory factory) {
+       return new TraceFilterProcessor(jsonMapper, factory);
     }
 
 }
