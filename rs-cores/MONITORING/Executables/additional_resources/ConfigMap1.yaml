@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: trace-filter-config
+  namespace: default
+data:
+  filter.yaml: |
+    filters:
+      -
+        name: filter-1
+        rules:
+          task.event: begin
+          output: toto
+      -
+        name: filter-2
+        rules:
+          task.event: begin|end
+          header.type: REPORT
+          kubernetes.pod_id: .*459c.*|d9e908c8-459c-410f-b538-18e3c442c877
+
