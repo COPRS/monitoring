@@ -118,7 +118,7 @@
                  Use of properties-maven-plugin to load the encoded metadata properties created by the jib-maven-plugin
                  Use: Use: ./mvnw clean install jib:dockerBuild or ./mvnw clean install jib:build
                 -->
-                <!--<plugin>
+                <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>properties-maven-plugin</artifactId>
                     <version>${properties-maven-plugin.version}</version>
@@ -135,9 +135,9 @@
                             </configuration>
                         </execution>
                     </executions>
-                </plugin>-->
+                </plugin>
 
-                <!--<plugin>
+                <plugin>
                     <groupId>org.springframework.cloud</groupId>
                     <artifactId>spring-cloud-dataflow-apps-metadata-plugin</artifactId>
                     <version>${spring-cloud-dataflow-apps-docs-plugin.version}</version>
@@ -160,7 +160,7 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>-->
+                </plugin>
 
                 <plugin>
                     <groupId>com.google.cloud.tools</groupId>
@@ -189,21 +189,12 @@
                                 <container>
                                     <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
                                     <format>Docker</format>
-                                    <!--<entrypoint>
-                                        <arg>${jib.java-executable}</arg>
-                                        <arg>-cp</arg>
-                                        <arg>@/app/jib-classpath-file</arg>
-                                        <arg>@/app/jib-main-class-file</arg>
-                                    </entrypoint>-->
                                     <labels>
-                                        <!--<org.springframework.cloud.dataflow.spring-configuration-metadata.json>
+                                        <org.springframework.cloud.dataflow.spring-configuration-metadata.json>
                                             ${org.springframework.cloud.dataflow.spring.configuration.metadata.json}
                                         </org.springframework.cloud.dataflow.spring-configuration-metadata.json>
                                         <application.name>${project.artifactId}</application.name>
-                                        <application.version>${project.version}</application.version>-->
-                                        <!--<git.commit>${git.commit.id.describe}</git.commit>
-                                        <git.branch>${git.branch}</git.branch>
-                                        <git.build.host>${git.build.host}</git.build.host>-->
+                                        <application.version>${project.version}</application.version>
                                     </labels>
                                 </container>
                             </configuration>

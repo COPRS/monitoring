@@ -16,7 +16,8 @@ public class TestInitializer extends ExternalResource implements ApplicationCont
     public void initialize(ConfigurableApplicationContext applicationContext) {
         try {
             TestPropertyValues.of(
-                    "filter.path=classpath:filter.yaml"
+                    "filter.path=classpath:filter.yaml",
+                    "spring.profiles.active=dev"
             ).applyTo(applicationContext.getEnvironment());
         } catch (Exception e) {
             throw new RuntimeException(e);

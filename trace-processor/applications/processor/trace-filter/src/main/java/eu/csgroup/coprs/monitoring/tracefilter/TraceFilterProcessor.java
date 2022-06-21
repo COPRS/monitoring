@@ -38,21 +38,24 @@ public class TraceFilterProcessor
             if (lastProcessedRawTrace != null && lastProcessedRawTrace.equals(json.getPayload())) {
                 log.warn("Retry last failed trace");
             } else {
-                log.debug("Handle new trace");
+                log.trace("Handle new trace");
             }
             final var trace = jsonValidator.readAndValidate(json.getPayload(), Trace.class);
             traceUid = trace.getTask().getUid();
-            var traceLog = new StringBuilder("Trace: ").append(traceUid)
-                .append(" handled; ");
+            var traceLog = new StringBuilder("Trace (").append(traceUid)
+                .append(") handled; ");
 
             JsonNode jsonNode = jsonValidator.getMapper().readTree(json.getPayload());
 
             var ruleMatch = factory.getBean(FilterGroup.class).apply(jsonNode);
 
-            ruleMatch.ifPresentOrElse(filter -> traceLog.append("matching rule ").append(filter),
-                () -> traceLog.append("no matching rule")
+            ruleMatch.ifPresentOrElse(filterName -> traceLog.append("filter '").append(filterName).append("' applied"),
+                () -> traceLog.append("no filter applied")
             );
             log.debug(traceLog.toString());
+
+            // Reset cached error trace
+            lastProcessedRawTrace = null;
 
             // Create message
             return ruleMatch.map(filter -> new FilteredTrace(filter.getName(), trace))

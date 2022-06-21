@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: trace-filter-config
-  namespace: default
+  namespace: monitoring
 data:
   filter.yaml: |
     filters:

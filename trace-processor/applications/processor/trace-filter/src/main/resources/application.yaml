@@ -2,7 +2,7 @@ spring:
   application:
     name: trace-filter
   profiles:
-    default: dev
+    default: prod
   main:
     banner-mode: off
   cloud:
@@ -14,25 +14,7 @@ spring:
           trace-filter-out-0: output
 
 logging:
-  level:
-    eu:
-      csgroup:
-        coprs: TRACE
-
-info:
-  app:
-    description: ^project.description^
-    name: ^project.artifactId^
-    version: ^project.version^
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: prod
-
-logging:
+  config: classpath:log4j2.yaml
   level:
     eu:
       csgroup:
@@ -52,3 +34,23 @@ management:
         enabled: true
       readinessState:
         enabled: true
+
+info:
+  app:
+    description: ^project.description^
+    name: ^project.artifactId^
+    version: ^project.version^
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+logging:
+  config: classpath:log4j2-test.yaml
+  level:
+    eu:
+      csgroup:
+        coprs: DEBUG

@@ -70,5 +70,11 @@ To start the application please define the following property 'filter.path'. It 
 
 Path must be defined with the following prefix 'file:' (for example 'file:/config/filter.yaml')
 
+Also define property 'spring.kafka.bootstrap-servers' to indicate kafka URL server 
+
+#### Troubleshooting
+
+If the application don't start/run properly you can set property 'logging.level.eu.csgroup.coprs' to 'DEBUG' or 'TRACE' to have details on application execution.
+If the issue is due to a dependency you can set property 'logging.level' to 'DEBUG' value to have dependency log.
 
  
