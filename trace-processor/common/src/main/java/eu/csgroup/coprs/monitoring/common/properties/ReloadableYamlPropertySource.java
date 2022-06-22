@@ -45,7 +45,6 @@ public class ReloadableYamlPropertySource extends EnumerablePropertySource imple
 
     public ReloadableYamlPropertySource(String name, final String path) {
         super(StringUtils.hasText(name) ? name : path);
-        System.out.println("Reloadable YAML property source name: " + name);
 
         Parameters params = new Parameters();
         // Read data from this file
