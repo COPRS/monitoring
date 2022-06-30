@@ -1,18 +1,21 @@
 package eu.csgroup.coprs.monitoring.tracefilter.rule;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.InvalidPropertyException;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 @Data
 @Slf4j
-public class Filter implements Predicate<JsonNode> {
+public class Filter implements Predicate<BeanWrapper> {
     private String name;
+    //private List<Rule> rules;
     private List<Rule> rules;
 
 
@@ -24,24 +27,29 @@ public class Filter implements Predicate<JsonNode> {
     }
 
     @Override
-    public boolean test(JsonNode jsonNode) {
-        return rules.stream()
-                .map(rule -> {
-                    final var path = getJsonPathFromRule(rule);
-                    final var jsonValue = jsonNode.at(path);
-                    var match = false;
-                    if (jsonValue != null) {
-                        match = rule.test(jsonValue.asText());
-                    }
+    public boolean test(BeanWrapper beanWrapper) {
+        // Wrap rule check
+        final Function<Rule, Boolean> applyRule = rule -> this.checkRule(rule, beanWrapper);
 
-                    if (!match) {
-                        log.trace("Rule: %s does not match".formatted(rule));
-                    }
-                    return match;
-                }).reduce(true, (last, next) -> last & next);
+        return rules.stream()
+                .map(applyRule)
+                .reduce(true, (last, next) -> last & next);
     }
 
-    private String getJsonPathFromRule (Rule rule) {
-        return "/" + rule.getKey().replaceAll("\\.", "/");
+    private boolean checkRule(Rule rule, BeanWrapper beanWrapper) {
+        var match = false;
+        Object value = null;
+        try {
+            value = beanWrapper.getPropertyValue(rule.getKey());
+            if (value != null) {
+                match = rule.test(value.toString());
+            }
+        } catch (InvalidPropertyException e) {
+            log.trace(e.getMessage());
+            match = false;
+        }
+        log.trace("Apply rule (path: %s; value: %s) on value '%s' => match: %s".formatted(rule.getKey(), rule.getRawValue(), value, match));
+
+        return match;
     }
 }

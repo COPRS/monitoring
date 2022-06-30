@@ -25,7 +25,6 @@ public class Rule implements Predicate<String> {
 
     @Override
     public boolean test(String value) {
-        log.trace("Apply rule %s".formatted(this));
         return compile().matcher(value).matches();
     }
 }

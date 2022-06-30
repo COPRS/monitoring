@@ -53,4 +53,7 @@ public interface PropertyNames {
 
     String UID_REGEX = "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}";
 
+    String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'";
+    String DEFAULT_TIMEZONE= "UTC";
+    String TRACE_LOG_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS'Z'";
 }

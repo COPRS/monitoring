@@ -10,10 +10,7 @@ import org.apache.commons.configuration2.builder.fluent.Parameters;
 import org.apache.commons.configuration2.event.Event;
 import org.apache.commons.configuration2.event.EventListener;
 import org.apache.commons.configuration2.reloading.PeriodicReloadingTrigger;
-import org.apache.commons.configuration2.tree.DefaultExpressionEngine;
-import org.apache.commons.configuration2.tree.DefaultExpressionEngineSymbols;
-import org.apache.commons.configuration2.tree.ExpressionEngine;
-import org.apache.commons.configuration2.tree.ImmutableNode;
+import org.apache.commons.configuration2.tree.*;
 import org.springframework.core.env.EnumerablePropertySource;
 import org.springframework.util.StringUtils;
 
@@ -24,18 +21,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
 @Slf4j
-public class ReloadableYamlPropertySource extends EnumerablePropertySource implements ReloadableBean {
+public class ReloadableYamlPropertySource extends EnumerablePropertySource<String> implements ReloadableBean {
     ReloadingFileBasedConfigurationBuilder<FileBasedConfiguration> builder;
 
-    private String lastRequested;
+    private static final String PROPERTY_DELIMITER = ".";
 
-    private static String PROPERTY_DELIMITER = ".";
+    private static final String QUOTED_PROPERTY_DELIMITER = Pattern.quote(PROPERTY_DELIMITER);
 
-    private static String QUOTED_PROPERTY_DELIMITER = Pattern.quote(PROPERTY_DELIMITER);
-
-    private static String ESCAPED_DELIMITER = "..";
+    private static final String ESCAPED_DELIMITER = "..";
 
     private AtomicBoolean dirty = new AtomicBoolean(false);
+
+    private List<LeafProperties> leafProperties;
 
     /**
      * Expression engine comptible with spring convention
@@ -84,6 +81,32 @@ public class ReloadableYamlPropertySource extends EnumerablePropertySource imple
 
     }
 
+    private static String getPath(String rootPath, String propertyName) {
+        if (rootPath == null || rootPath.isEmpty()) {
+            return propertyName;
+        } else {
+            return "%s.%s".formatted(rootPath, propertyName);
+        }
+    }
+
+    private String getPropertyName(ImmutableNode rootNode, ImmutableNode childNode) {
+        final var duplicate = rootNode != null ? rootNode.getChildren(childNode.getNodeName()) : List.of();
+        final var propName = surroundPropertyName(childNode.getNodeName());
+        if (duplicate.size() > 1) {
+            return  "%s[%s]".formatted(propName, duplicate.indexOf(childNode));
+        } else {
+            return propName;
+        }
+    }
+
+    private String surroundPropertyName (String rawName) {
+        if (rawName.contains("[")) {
+            return "[%s]".formatted(rawName);
+        } else {
+            return rawName;
+        }
+    }
+
 
     public FileBasedConfiguration getConfiguration () {
         try {
@@ -91,6 +114,7 @@ public class ReloadableYamlPropertySource extends EnumerablePropertySource imple
             // On configuration reload need to apply our expression engine.
             if (((YAMLConfiguration)currentConfig).getExpressionEngine() != expressionEngine) {
                 ((YAMLConfiguration)currentConfig).setExpressionEngine(expressionEngine);
+                leafProperties = null;
             }
             return currentConfig;
         } catch (Exception e) {
@@ -100,41 +124,58 @@ public class ReloadableYamlPropertySource extends EnumerablePropertySource imple
 
     @Override
     public Object getProperty(String s) {
-        lastRequested = s;
         log.trace("Required key: %s".formatted(s));
 
-        final var property = getConfiguration().getProperty(s);
+        final var property = getLeaf().stream()
+                .filter(leaf -> leaf.path.equals(s))
+                .findFirst()
+                .map(leaf -> leaf.delegate.getValue())
+                .orElse(null);
+
         log.trace("Value: %s".formatted(property));
         return property;
     }
 
     @Override
     public String[] getPropertyNames() {
-        final var propertiesConfiguration = getConfiguration();
-        final var expEng = ((YAMLConfiguration)propertiesConfiguration).getExpressionEngine();
-        final var nodeHandler = ((YAMLConfiguration) propertiesConfiguration).getNodeModel().getNodeHandler();
-
-        return expEng.query(nodeHandler.getRootNode(), lastRequested, nodeHandler)
+        return getLeaf()
                 .stream()
-                .map(qr -> getChildKeys(lastRequested, qr.getNode()))
-                .reduce(new Vector<>(), (l,n) -> {
-                    l.addAll(n);
-                    return l;
-                })
+                .map(leaf -> leaf.path)
+                .toList()
                 .toArray(String[]::new);
     }
 
-    private List<String> getChildKeys (String keyPrefix, ImmutableNode rootNode) {
-        return rootNode.getChildren()
-            .stream()
-            .map(n -> "%s.%s".formatted(keyPrefix, convertKey(n.getNodeName())))
-            .peek(t -> log.trace("Found key: %s".formatted(t)))
-            .toList();
+    private record LeafProperties (
+            String path,
+            ImmutableNode delegate
+    ){
     }
 
-    private String convertKey (String apacheKey) {
-        final var springKey = apacheKey.replaceAll(QUOTED_PROPERTY_DELIMITER, ESCAPED_DELIMITER);
-        return springKey;
+    public List<LeafProperties> getLeaf() {
+        if (leafProperties == null) {
+            final var propertiesConfiguration = getConfiguration();
+            final var nodeHandler = ((YAMLConfiguration) propertiesConfiguration).getNodeModel().getNodeHandler();
+
+            final var rootNode = nodeHandler.getRootNode();
+            leafProperties = getLeaf(null, rootNode, "");
+            leafProperties.stream().forEach(leaf -> log.trace("Found property: %s".formatted(leaf.path)));
+        }
+
+        return leafProperties;
+    }
+
+    public List<LeafProperties> getLeaf(ImmutableNode rootNode, ImmutableNode currentNode, String path) {
+        if (currentNode.getChildren().isEmpty()) {
+            return List.of(new LeafProperties(getPath(path, getPropertyName(rootNode, currentNode)), currentNode));
+        } else {
+            return currentNode.getChildren()
+                    .stream()
+                    .map(childNode -> getLeaf(currentNode, childNode, getPath(path, getPropertyName(rootNode, currentNode))))
+                    .reduce(new Vector<>(), (l,n) -> {
+                        l.addAll(n);
+                        return l;
+                    });
+        }
     }
 
     @Override

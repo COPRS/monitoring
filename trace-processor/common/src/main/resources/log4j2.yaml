@@ -24,7 +24,7 @@ Configuration:
       - name: PLAIN
         target: SYSTEM_OUT
         PatternLayout:
-          Pattern: "%msg%n"
+          Pattern: "%level: %msg%n"
 
     RollingFile:
       - name: FILE

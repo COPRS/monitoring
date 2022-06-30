@@ -1,13 +1,13 @@
 package eu.csgroup.coprs.monitoring.common.datamodel;
 
 import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.JsonNode;
 import eu.csgroup.coprs.monitoring.common.json.PropertyNames;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Map;
 
 
 @Data
@@ -15,8 +15,8 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "event", visible = true)
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = BeginTask.class, name = "begin"),
-    @JsonSubTypes.Type(value = EndTask.class, name = "end") }
+    @JsonSubTypes.Type(value = BeginTask.class, name = "BEGIN"),
+    @JsonSubTypes.Type(value = EndTask.class, name = "END") }
 )
 public class Task {
     @NotNull
@@ -30,21 +30,13 @@ public class Task {
     @NotNull
     private Event event;
 
+    @JsonProperty("data_rate_mebibytes_sec")
     private double dataRateMebibytesSec;
+    @JsonProperty("data_volume_mebibytes")
     private double dataVolumeMebibytes;
 
     private Satellite satellite;
 
     @NotNull
-    private String input;
-
-    public void setInput(JsonNode input) {
-        this.input = input.toString();
-    }
-
-    @JsonRawValue
-    public String getInput() {
-        // default raw value: null or "[]"
-        return input == null ? null : input.toString();
-    }
+    private Map input;
 }

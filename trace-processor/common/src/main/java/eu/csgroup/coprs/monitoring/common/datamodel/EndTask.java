@@ -1,11 +1,10 @@
 package eu.csgroup.coprs.monitoring.common.datamodel;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonRawValue;
-import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -17,37 +16,17 @@ public class EndTask extends Task {
     private Status status;
 
     @NotNull
-    private Integer errorCode;
+    @JsonProperty("error_code")
+    private int errorCode;
 
     //TODO Set as Duration and not double
     @NotNull
+    @JsonProperty("duration_in_seconds")
     private Double durationInSeconds;
 
     @NotNull
-    private Object output;
+    private Map output;
 
     @NotNull
-    private Object quality;
-
-
-    public void setOutput(JsonNode output) {
-        this.output = output;
-    }
-
-    @JsonRawValue
-    @JsonFormat
-    public String getOutput() {
-        // default raw value: null or "[]"
-        return output == null ? null : output.toString();
-    }
-
-    public void setQuality(JsonNode quality) {
-        this.quality = quality;
-    }
-
-    @JsonRawValue
-    public String getQuality() {
-        // default raw value: null or "[]"
-        return quality == null ? null : quality.toString();
-    }
+    private Map quality;
 }

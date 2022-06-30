@@ -77,7 +77,7 @@
         <!--<test-containers.version>1.16.0</test-containers.version>
         <mockserver.version>5.10</mockserver.version>
         <docker-java.version>3.2.11</docker-java.version>-->
-
+        <h2.version>2.1.214</h2.version>
 	
         <!-- ==== Module versions ==== -->
         <revision>1.1.9-rc1</revision>
