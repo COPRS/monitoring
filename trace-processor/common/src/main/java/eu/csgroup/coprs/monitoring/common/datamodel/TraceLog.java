@@ -1,15 +1,11 @@
 package eu.csgroup.coprs.monitoring.common.datamodel;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import eu.csgroup.coprs.monitoring.common.json.PropertyNames;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import java.time.Instant;
 import java.util.Map;
 
 @Data
@@ -32,6 +28,5 @@ public class TraceLog {
     @JsonProperty("log")
     private Trace trace;
 
-    @NotNull
     private Map kubernetes;
 }

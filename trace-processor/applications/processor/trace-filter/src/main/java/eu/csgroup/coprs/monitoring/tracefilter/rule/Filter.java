@@ -42,7 +42,7 @@ public class Filter implements Predicate<BeanWrapper> {
         try {
             value = beanWrapper.getPropertyValue(rule.getKey());
             if (value != null) {
-                match = rule.test(value.toString());
+                match = rule.test(value);
             }
         } catch (InvalidPropertyException e) {
             log.trace(e.getMessage());

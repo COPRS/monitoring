@@ -8,11 +8,9 @@ import java.util.function.Function;
 import eu.csgroup.coprs.monitoring.common.bean.ReloadableBeanFactory;
 import eu.csgroup.coprs.monitoring.common.datamodel.TraceLog;
 import eu.csgroup.coprs.monitoring.common.message.FilteredTrace;
-import eu.csgroup.coprs.monitoring.common.datamodel.Trace;
 import eu.csgroup.coprs.monitoring.tracefilter.json.JsonValidationException;
 import eu.csgroup.coprs.monitoring.tracefilter.json.JsonValidator;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import eu.csgroup.coprs.monitoring.tracefilter.rule.FilterGroup;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.messaging.Message;
@@ -23,8 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TraceFilterProcessor
     implements Function<Message<String>, List<Message<FilteredTrace>>> {
-
-    private static final String JSON_TRACE_FIELD_NAME= "log";
 
     private final JsonValidator jsonValidator;
 
@@ -38,7 +34,6 @@ public class TraceFilterProcessor
     }
 
     public List<Message<FilteredTrace>> apply(Message<String> json) {
-        String traceUid = null;
         final var rawJson = undecorate(json.getPayload());
         try {
             if (lastProcessedRawTrace != null && lastProcessedRawTrace.equals(rawJson)) {
@@ -55,9 +50,7 @@ public class TraceFilterProcessor
             beanWrapper.setAutoGrowNestedPaths(true);
 
             // Prepare log result
-            traceUid = trace.getTask().getUid();
-            var traceLog = new StringBuilder("Trace (").append(traceUid)
-                .append(") handled; ");
+            var traceLog = new StringBuilder("Trace handled");
 
             var matchingFilter = Optional.of(beanWrapper).flatMap(factory.getBean(FilterGroup.class));
 
@@ -65,7 +58,7 @@ public class TraceFilterProcessor
             matchingFilter.ifPresentOrElse(filterName -> traceLog.append("filter '").append(filterName).append("' applied"),
                 () -> traceLog.append("no filter applied")
             );
-            log.debug(traceLog.toString());
+            log.debug(traceLog.append("(").append(rawJson).append(")").toString());
 
             // Reset cached error trace
             lastProcessedRawTrace = null;

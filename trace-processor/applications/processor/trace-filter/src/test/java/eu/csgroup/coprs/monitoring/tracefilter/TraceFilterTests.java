@@ -4,20 +4,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import eu.csgroup.coprs.monitoring.common.bean.ReloadableBeanFactory;
-import eu.csgroup.coprs.monitoring.common.properties.ReloadableYamlPropertySource;
-import eu.csgroup.coprs.monitoring.common.properties.ReloadableYamlPropertySourceFactory;
 import eu.csgroup.coprs.monitoring.tracefilter.json.JsonValidator;
 import eu.csgroup.coprs.monitoring.tracefilter.rule.FilterGroup;
+import eu.csgroup.coprs.monitoring.tracefilter.rule.Rule;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Import;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.support.EncodedResource;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,8 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Properties;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @EnableConfigurationProperties(FilterGroup.class)
@@ -92,6 +86,38 @@ public class TraceFilterTests {
 
         // When - Then
         assertThatThrownBy(() -> processor.apply(toMessage(content))).isNotNull();
+    }
+
+    @Test
+    public void testValidRuleOnList() {
+        // Given
+        final var rule = new Rule("test", ".*_DSIB\\.xml");
+
+        // When
+        final var res = rule.test(List.of(
+                "DCS_05_S2B_20210927072424023813_ch1_DSIB.xml",
+                "DCS_05_S2B_20210927072424023813_ch2_DSIB.xml",
+                "DCS_05_S2B_20210927072424023813_ch3_DSIB.xml")
+        );
+
+        // Then
+        assertThat(res).isTrue();
+    }
+
+    @Test
+    public void testInvalidRuleOnList() {
+        // Given
+        final var rule = new Rule("test", ".*_DSIB\\.xml");
+
+        // When
+        final var res = rule.test(List.of(
+                "DCS_05_S2B_20210927072424023813_ch1_DSIB.xml",
+                "DCS_05_S2B_20210927072424023813_ch1_DSDB_00001.raw",
+                "DCS_05_S2B_20210927072424023813_ch2_DSIB.xml")
+        );
+
+        // Then
+        assertThat(res).isFalse();
     }
 
     protected static String getContent(String classpathResource) {
