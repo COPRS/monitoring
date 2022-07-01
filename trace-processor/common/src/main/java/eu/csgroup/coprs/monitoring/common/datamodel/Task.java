@@ -20,7 +20,7 @@ import java.util.Map;
 )
 public class Task {
     @NotNull
-    @Pattern(regexp = PropertyNames.UID_REGEX, message = "Task uid does not match UID pattern")
+    @Pattern(regexp = PropertyNames.UID_REGEX, message = "task.uid does not match UID pattern")
     private String uid;
 
     @NotNull

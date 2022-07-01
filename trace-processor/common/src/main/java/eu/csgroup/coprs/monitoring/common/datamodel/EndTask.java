@@ -29,4 +29,7 @@ public class EndTask extends Task {
 
     @NotNull
     private Map quality;
+
+    @JsonProperty("missing_output")
+    private Map missingOutput;
 }

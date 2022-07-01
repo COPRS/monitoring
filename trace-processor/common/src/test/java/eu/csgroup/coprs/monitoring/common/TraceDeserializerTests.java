@@ -150,6 +150,8 @@ public class TraceDeserializerTests {
         header.setTimestamp(Instant.parse("2021-08-30T15:02:24.125000Z"));
         header.setLevel(TraceLevel.INFO);
         header.setMission(Mission.S3);
+        header.setRsChainName("trace-processor");
+        header.setRsChainVersion("1.1.9-rc1");
         header.setWorkflow(Workflow.NOMINAL);
         header.setDebugMode(false);
         header.setTagList(List.of("TAG1", "TAG2", "TAG3"));
@@ -194,6 +196,8 @@ public class TraceDeserializerTests {
         header.setTimestamp(Instant.parse("2021-08-30T15:02:24.125000Z"));
         header.setLevel(TraceLevel.INFO);
         header.setMission(Mission.S3);
+        header.setRsChainName("trace-processor");
+        header.setRsChainVersion("1.1.9-rc1");
         header.setWorkflow(Workflow.NOMINAL);
         header.setDebugMode(false);
         header.setTagList(List.of("TAG1", "TAG2", "TAG3"));
@@ -225,6 +229,13 @@ public class TraceDeserializerTests {
                 )
         );
         task.setQuality(
+                Map.of(
+                        "key", "value1",
+                        "key_string", "value2",
+                        "key_strings", List.of("value3", "value4", "value5")
+                )
+        );
+        task.setMissingOutput(
                 Map.of(
                         "key", "value1",
                         "key_string", "value2",

@@ -6,6 +6,8 @@ import eu.csgroup.coprs.monitoring.common.json.PropertyNames;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.List;
 
@@ -26,6 +28,14 @@ public class Header {
 
     @NotNull
     private Mission mission;
+
+    @JsonProperty("rs_chain_name")
+    @Size(max= PropertyNames.STRING_FIELD_256_LIMIT, message="header.rs_chain_name cannot exceed " + PropertyNames.STRING_FIELD_10K_LIMIT + " characters")
+    private String rsChainName;
+
+    @JsonProperty("rs_chain_version")
+    @Pattern(regexp = PropertyNames.VERSION_REGEX, message = "header.rs_chain_version does not match UID pattern")
+    private String rsChainVersion;
 
     private Workflow workflow;
 

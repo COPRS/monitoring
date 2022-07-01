@@ -4,6 +4,8 @@
     "timestamp": "2021-08-30T15:02:24.125000Z",
     "level": "INFO",
     "mission": "S3",
+    "rs_chain_name": "trace-processor",
+    "rs_chain_version": "1.1.9-rc1",
     "workflow": "NOMINAL",
     "debug_mode": "false",
     "tag_list": ["TAG1", "TAG2", "TAG3"]
