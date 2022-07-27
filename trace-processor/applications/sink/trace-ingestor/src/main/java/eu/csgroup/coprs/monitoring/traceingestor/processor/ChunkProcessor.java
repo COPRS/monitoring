@@ -33,7 +33,7 @@ public class ChunkProcessor extends DefaultProcessor<Chunk> {
 
         final var missingDsibByFilename = processedEntities.stream()
                 .filter(c -> c.getDsib().getId() == null)
-                .peek(c -> c.getDsib().setFilename(chunkToDsibFilename(c.getFilename())))
+                .peek(this::setDefaultDsibValue)
                 .collect(Collectors.groupingBy(c -> c.getDsib().getFilename()));
 
         final var spec = Specification.<Dsib>where(null).and(
@@ -45,6 +45,11 @@ public class ChunkProcessor extends DefaultProcessor<Chunk> {
                 });
 
         return processedEntities;
+    }
+
+    private void setDefaultDsibValue(Chunk chunk) {
+        chunk.getDsib().setFilename(chunkToDsibFilename(chunk.getFilename()));
+        chunk.getDsib().setMission(chunk.getMission());
     }
 
     private String chunkToDsibFilename(String chunkFilename) {
