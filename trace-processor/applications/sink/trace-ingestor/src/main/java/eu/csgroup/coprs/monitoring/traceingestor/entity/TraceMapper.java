@@ -99,7 +99,7 @@ public class TraceMapper<T extends DefaultEntity> {
         private final List<Mapping> rules;
 
         private final String configurationName;
-
+  
         public List<T> parse(BeanAccessor wrapper, DefaultHandler handler) {
             final var entityCache = new EntityCache(handler);
             parse(rules.iterator(), wrapper, entityCache);

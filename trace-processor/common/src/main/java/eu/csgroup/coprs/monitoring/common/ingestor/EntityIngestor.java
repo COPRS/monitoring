@@ -80,7 +80,6 @@ public class EntityIngestor implements EntityFinder {
             return List.of();
         } else {
             return selectRepository(entities.get(0).getClass()).saveAll(entities);
-
         }
     }
 
