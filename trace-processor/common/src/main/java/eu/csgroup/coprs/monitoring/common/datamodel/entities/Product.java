@@ -1,11 +1,14 @@
 package eu.csgroup.coprs.monitoring.common.datamodel.entities;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import eu.csgroup.coprs.monitoring.common.bean.AutoMergeableMap;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,6 +24,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class Product extends DefaultEntity {
     @Id
     @SequenceGenerator(sequenceName="product_id_seq", name = "product_id_seq", allocationSize=1)
@@ -29,8 +33,8 @@ public class Product extends DefaultEntity {
 
     private String filename;
 
-    @Type( type = "json" )
-    @Column(columnDefinition = "json")
+    @Type( type = "jsonb" )
+    @Column(columnDefinition = "jsonb")
     private AutoMergeableMap custom;
 
     private String timelinessName;

@@ -7,7 +7,7 @@ CREATE TABLE external_input
     pickup_point_available_date TIMESTAMP,
     ingestion_date TIMESTAMP,
     catalog_storage_date TIMESTAMP,
-    custom json
+    custom jsonb
 );
 
 CREATE TABLE dsib
@@ -35,7 +35,7 @@ CREATE TABLE product
 (
     id bigserial PRIMARY KEY,
     filename VARCHAR NOT NULL UNIQUE,
-    custom json,
+    custom jsonb,
     timeliness_name VARCHAR,
     timeliness_value_seconds INTEGER,
     end_to_end_product boolean,
