@@ -14,6 +14,7 @@ import eu.csgroup.coprs.monitoring.traceingestor.mapping.IngestionGroup;
 import eu.csgroup.coprs.monitoring.traceingestor.mapping.Mapping;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
+import org.slf4j.MDC;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.messaging.Message;
 
@@ -63,10 +64,12 @@ public class TraceIngestorSink implements Consumer<Message<FilteredTrace>> {
         );
 
         final var duration = Duration.between(start, Instant.now());
-        log.info("Trace ingestion with configuration '%s' done (took %s ms)\n%s".formatted(
-                ingestionStrategy.get().getName(),
-                duration.toMillis(),
-                filteredTrace.getTrace()));
+        try (MDC.MDCCloseable mdc = MDC.putCloseable("log_param", ",\"ingestion_duration_in_ms\":%s".formatted(duration.toMillis()))) {
+            log.info("Trace ingestion with configuration '%s' done (took %s ms)\n%s".formatted(
+                    ingestionStrategy.get().getName(),
+                    duration.toMillis(),
+                    filteredTrace.getTrace()));
+        }
     }
 
     protected final <T extends ExternalInput> void ingest(Trace trace, Ingestion mapping) {

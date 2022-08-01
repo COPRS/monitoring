@@ -4,6 +4,8 @@ import eu.csgroup.coprs.monitoring.common.datamodel.entities.DefaultEntity;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
@@ -16,4 +18,8 @@ public interface EntityRepository<T extends DefaultEntity> extends JpaRepository
     @Override
     List<T> findAll(Specification<T> spec);
 
+    @Override
+    @Modifying
+    @Query("DELETE FROM #{#entityName}")
+    void deleteAll();
 }

@@ -6,6 +6,7 @@ import eu.csgroup.coprs.monitoring.common.datamodel.entities.*;
 import eu.csgroup.coprs.monitoring.common.ingestor.EntityIngestor;
 import eu.csgroup.coprs.monitoring.common.datamodel.*;
 import eu.csgroup.coprs.monitoring.common.message.FilteredTrace;
+import io.zonky.test.db.AutoConfigureEmbeddedDatabase;
 import org.junit.*;
 
 import org.junit.runner.RunWith;
@@ -14,13 +15,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.GenericMessage;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.persistence.EntityManager;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,6 +28,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @Import(TraceIngestorConfiguration.class)
 @ContextConfiguration(initializers = TestInitializer.class)
 @DataJpaTest
+// Comment the two below annotation to test with non embedded database
+@AutoConfigureEmbeddedDatabase
 @ActiveProfiles("dev-embedded")
 //@ActiveProfiles("dev-integration")
 public class LogSinkTests {
