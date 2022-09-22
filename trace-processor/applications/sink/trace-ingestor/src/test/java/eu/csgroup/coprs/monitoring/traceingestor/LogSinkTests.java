@@ -60,7 +60,7 @@ public class LogSinkTests {
         // Then
         assertThat(entityIngestor.findAll(Dsib.class))
                 .hasSize(1)
-                .allMatch(entity -> entity instanceof Dsib);
+                .allMatch(Objects::nonNull);
     }
 
     @Test
@@ -92,12 +92,12 @@ public class LogSinkTests {
                 .allMatch(p -> p.getFilename() != null)
                 .allMatch(p -> p.getTimelinessName() != null)
                 .allMatch(p -> p.getTimelinessValueSeconds() != 0)
-                .allMatch(p -> p.isEndToEndProduct())
+                .allMatch(Product::isEndToEndProduct)
                 .allMatch(p -> !p.getCustom().isEmpty());
         assertThat(entityIngestor.list(InputListInternal.class))
-                .hasSize(0);
+                .isEmpty();
         assertThat(entityIngestor.list(OutputList.class))
-                .hasSize(0);
+                .isEmpty();
     }
 
     @Test
@@ -215,13 +215,13 @@ public class LogSinkTests {
 
         // Then
         output.put("test_string", outputUpdate.get("test_string"));
-        final var collection = new HashSet((Collection)output.get("test_strings"));
+        final var collection = new HashSet<Object>((Collection<Object>)output.get("test_strings"));
         collection.add("string2");
         collection.add("string4");
         output.put("test_strings", collection);
-        ((Map)(output.get("test_object"))).put("object1", "value10");
-        ((Map)(output.get("test_object"))).put("object2", "value2");
-        ((Map)(output.get("test_object"))).put("object4", "value4");
+        ((Map<String, Object>)(output.get("test_object"))).put("object1", "value10");
+        ((Map<String, Object>)(output.get("test_object"))).put("object2", "value2");
+        ((Map<String, Object>)(output.get("test_object"))).put("object4", "value4");
         final var custom = new AutoMergeableMap();
         custom.put("destination", output);
         custom.putAll(customUpdate);
@@ -289,8 +289,7 @@ public class LogSinkTests {
     private FilteredTrace getMultiChunkRef(String ... additionalChunks) {
         var ref = getRawRef();
         ref.getTrace().getTask().setName("CHUNK Trace");
-        final var filenames = new Vector<String>();
-        filenames.addAll(Arrays.asList(additionalChunks));
+        final var filenames = new ArrayList<>(Arrays.asList(additionalChunks));
 
         ((EndTask)ref.getTrace().getTask()).getOutput().put("filename", filenames);
 

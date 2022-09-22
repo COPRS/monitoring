@@ -74,7 +74,7 @@ public class ProcessingIngestionTests {
         assertThat(entityIngestor.findAll(OutputList.class))
                 .hasSize(4);
         assertThat(entityIngestor.findAll(MissingProducts.class))
-                .hasSize(0);
+                .isEmpty();
     }
 
     @Test
@@ -127,7 +127,7 @@ public class ProcessingIngestionTests {
 
         // Then
         assertThat(entityIngestor.findAll(Product.class))
-                .hasSize(0);
+                .isEmpty();
     }
 
     @Test
@@ -141,7 +141,7 @@ public class ProcessingIngestionTests {
 
         // Then
         assertThat(entityIngestor.findAll(ExternalInput.class))
-                .hasSize(0);
+                .isEmpty();
     }
 
 
