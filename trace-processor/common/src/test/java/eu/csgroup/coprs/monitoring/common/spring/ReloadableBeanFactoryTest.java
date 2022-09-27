@@ -2,6 +2,7 @@ package eu.csgroup.coprs.monitoring.common.spring;
 
 import eu.csgroup.coprs.monitoring.common.bean.ReloadableBeanFactory;
 import eu.csgroup.coprs.monitoring.common.properties.ReloadablePropertySourceEnvironment;
+import eu.csgroup.coprs.monitoring.common.properties.ReloadableYamlPropertySource;
 import org.junit.Test;
 import org.junit.rules.ExternalResource;
 import org.junit.rules.TemporaryFolder;
@@ -125,5 +126,15 @@ public class ReloadableBeanFactoryTest {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @Test
+    public void testOther () {
+        final var reloadableBean = new ReloadableYamlPropertySource("test", "src/test/resources/spring/test.yaml");
+        final var reloadableBean2 = new ReloadableYamlPropertySource("test", "src/test/resources/spring/test-update.yaml");
+
+        assertThat(reloadableBean).isNotEqualTo(reloadableBean2);
+        assertThat(reloadableBean.toString()).isNotEqualTo(reloadableBean2.toString());
+
     }
 }

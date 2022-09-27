@@ -11,6 +11,7 @@ import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.beans.PropertyAccessorFactory;
 
 import java.time.Instant;
+import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -127,5 +128,17 @@ public class BeanAccessorTest {
         assertThat((TraceLog)value).extracting(traceLogCheck -> traceLogCheck.getTrace().getHeader().getTimestamp())
                 .isNotNull()
                 .isEqualTo(res);
+    }
+
+    @Test
+    public void testOther () {
+        final var beanAccessor = new BeanAccessor(PropertyAccessorFactory.forBeanPropertyAccess(new TraceLog()));
+        final var beanAccessor2 = new BeanAccessor(PropertyAccessorFactory.forBeanPropertyAccess(new TraceLog()));
+
+        assertThat(beanAccessor)
+                .isNotEqualTo(beanAccessor2);
+        assertThat(beanAccessor.toString())
+                .isNotEqualTo(beanAccessor2.toString());
+
     }
 }

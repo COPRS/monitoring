@@ -66,4 +66,14 @@ public class BeanPropertyTests {
         assertThat(retrievedProperties).containsExactlyInAnyOrderElementsOf(expectedProperties.keySet());
         assertThat(retrievedValues).containsExactlyInAnyOrderElementsOf(expectedProperties.values());
     }
+
+    @Test
+    public void testOther () {
+        final var prop = new BeanProperty("log.trace.task.missing_output[filename_strings][2]");
+        final var prop2 = new BeanProperty("Log.trace.task.missing_output[filename_strings][2]");
+
+        assertThat(prop)
+                .isNotEqualTo(prop2)
+                .hasToString(prop.toString());
+    }
 }
