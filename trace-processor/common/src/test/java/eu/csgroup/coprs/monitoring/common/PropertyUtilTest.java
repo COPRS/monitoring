@@ -1,6 +1,5 @@
 package eu.csgroup.coprs.monitoring.common;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import eu.csgroup.coprs.monitoring.common.properties.PropertyUtil;
 import org.junit.Test;
 

@@ -132,14 +132,13 @@ public class EntityIngestor implements EntityFinder {
         log.debug("Order: %s".formatted(orderedEntityType));
     }
 
-    public DefaultEntity findEntityBy (Map<String, String> attributes) {
+    public <T extends DefaultEntity> List<T> findEntityBy (Class<T> className, Map<String, String> attributes) {
         final var clause = attributes.entrySet()
                 .stream()
-                .map(entry -> EntitySpecification.<ExternalInput>getEntityBy(entry.getKey(), entry.getValue()))
+                .map(entry -> EntitySpecification.<T>getEntityBy(entry.getKey(), entry.getValue()))
                 .reduce(where(null), Specification::and);
 
-        return eiRepository.findOne(clause)
-                .orElse(null);
+        return selectRepository(className).findAll(clause);
     }
 
     public <T extends DefaultEntity> List<T> findAll(Class<T> className) {
