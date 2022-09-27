@@ -182,7 +182,7 @@ public class LogSinkTests {
         sink.accept(toMessage(dsibRef));
 
         // Then
-        assertThat(entityIngestor.findEntityBy(Map.of("filename", filename)))
+        assertThat(entityIngestor.findEntityBy(Dsib.class, Map.of("filename", filename)))
                 .extracting("mission")
                 .isNotEqualTo(oldMissionRef);
     }
@@ -263,8 +263,9 @@ public class LogSinkTests {
         sink.accept(toMessage(dsibRef));
 
         // Then
-        System.out.println("############################");
-        System.out.println(entityIngestor.findEntityBy(Map.of("filename", filename)));
+        assertThat(entityIngestor.findEntityBy(Dsib.class, Map.of("filename", filename)))
+                .isNotEmpty()
+                .hasSize(1);
     }
 
 
