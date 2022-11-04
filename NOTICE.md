@@ -856,15 +856,15 @@ Below are all the dependecies used during runtime and their respective licence.
 
 - aws
   - github.com/aws/aws-sdk-go
-    - Version: 1.29.26
-    - License: [Apache License 2.0](https://github.com/aws/aws-sdk-go/blob/v1.29.26/LICENSE.txt)
-    - Source: https://github.com/aws/aws-sdk-go/tree/v1.29.26
+    - Version: 1.44.114
+    - License: [Apache License 2.0](https://github.com/aws/aws-sdk-go/blob/v1.44.114/LICENSE.txt)
+    - Source: https://github.com/aws/aws-sdk-go/tree/v1.44.114
 
 - prometheus
   - github.com/prometheus/client_golang
-    - Version: 1.1.0
-    - License: [Apache License 2.0](https://github.com/prometheus/client_golang/blob/v1.1.0/LICENSE)
-    - Source: https://github.com/prometheus/client_golang/tree/v1.1.0
+    - Version: 1.13.0
+    - License: [Apache License 2.0](https://github.com/prometheus/client_golang/blob/v1.13.0/LICENSE)
+    - Source: https://github.com/prometheus/client_golang/tree/v1.13.0
 
 - perks
   - github.com/beorn7/perks
@@ -930,15 +930,27 @@ Below are all the dependecies used during runtime and their respective licence.
 
 - prometheus
   - github.com/prometheus/client_golang
-    - Version: 1.1.0
-    - License: [Apache License 2.0](https://github.com/prometheus/client_golang/blob/v1.1.0/LICENSE)
-    - Source: https://github.com/prometheus/client_golang/tree/v1.1.0
+    - Version: 1.13.0
+    - License: [Apache License 2.0](https://github.com/prometheus/client_golang/blob/v1.13.0/LICENSE)
+    - Source: https://github.com/prometheus/client_golang/tree/v1.13.0
+
+- api
+  - k8s.io/api
+    - Version: 0.25.2
+    - License: [Apache License 2.0](https://github.com/kubernetes/api/blob/v0.25.2/LICENSE)
+    - Source: https://github.com/kubernetes/api/tree/v0.25.2
 
 - apimachinery
   - k8s.io/apimachinery
-    - Version: 0.17.3
-    - License: [Apache License 2.0](https://github.com/kubernetes/apimachinery/blob/v0.17.3/LICENSE)
-    - Source: https://github.com/kubernetes/apimachinery/tree/v0.17.3
+    - Version: 0.25.2
+    - License: [Apache License 2.0](https://github.com/kubernetes/apimachinery/blob/v0.25.2/LICENSE)
+    - Source: https://github.com/kubernetes/apimachinery/tree/v0.25.2
+
+- client-go
+  - k8s.io/client-go
+    - Version: 0.25.2
+    - License: [Apache License 2.0](https://github.com/kubernetes/client-go/blob/v0.25.2/LICENSE)
+    - Source: https://github.com/kubernetes/client-go/tree/v0.25.2
 
 - purell
   - github.com/PuerkitoBio/purell
