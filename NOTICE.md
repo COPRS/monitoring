@@ -958,6 +958,7 @@ Below are all the dependecies used during runtime and their respective licence.
     - License: [BSD 3-Clause "New" or "Revised" License](https://github.com/PuerkitoBio/purell/blob/v1.1.1/LICENSE)
     - Source: https://github.com/PuerkitoBio/purell/tree/v1.1.1
 
+- urlesc
   - github.com/PuerkitoBio/urlesc
     - Version: v0.0.0-20170810143723-de5bf2ad4578
     - License: [BSD 3-Clause "New" or "Revised" License](https://github.com/PuerkitoBio/urlesc/blob/master/LICENSE)
