@@ -873,49 +873,49 @@ Below are all the dependecies used during runtime and their respective licence.
     - Source: https://github.com/beorn7/perks/tree/v1.0.1
 
 - xxhash
-	- github.com/cespare/xxhash/v2
+  - github.com/cespare/xxhash/v2
     - Version: v2.1.2
     - License: [MIT Licence](https://github.com/cespare/xxhash/blob/v2.1.2/LICENSE.txt)
     - Source: https://github.com/cespare/xxhash/tree/v2.1.2
     
 - protobuf
-	- github.com/golang/protobuf
+  - github.com/golang/protobuf
     - Version: v1.5.2
     - License: [BSD 3-Clause "New" or "Revised" License](https://github.com/golang/protobuf/blob/v1.5.2/LICENSE)
     - Source: https://github.com/golang/protobuf/tree/v1.5.2
 
 - go-jmespath
-	- github.com/jmespath/go-jmespath
+  - github.com/jmespath/go-jmespath
     - Version: v0.4.0
     - License: [Apache License 2.0](https://github.com/jmespath/go-jmespath/blob/v0.4.0/LICENSE)
     - Source: https://github.com/jmespath/go-jmespath/tree/v0.4.0
 
 - golang_protobuf_extensions
-	- github.com/matttproud/golang_protobuf_extensions
+  - github.com/matttproud/golang_protobuf_extensions
     - Version: v1.0.1
     - License: [Apache License 2.0](https://github.com/matttproud/golang_protobuf_extensions/blob/v1.0.1/LICENSE)
     - Source: https://github.com/matttproud/golang_protobuf_extensions/tree/v1.0.1
 
 - client_model
-	- github.com/prometheus/client_model
+  - github.com/prometheus/client_model
     - Version: v0.2.0
     - License: [Apache License 2.0](https://github.com/prometheus/client_model/blob/v0.2.0/LICENSE)
     - Source: https://github.com/prometheus/client_model/tree/v0.2.0
 
 - common
-	- github.com/prometheus/common
+  - github.com/prometheus/common
     - Version: v0.37.0
     - License: [Apache License 2.0](https://github.com/prometheus/common/blob/v0.37.0/LICENSE)
     - Source: https://github.com/prometheus/common/tree/v0.37.0
 
 - procfs
-	- github.com/prometheus/procfs
+  - github.com/prometheus/procfs
     - Version: v0.8.0
     - License: [Apache License 2.0](https://github.com/prometheus/procfs/blob/v0.8.0/LICENSE)
     - Source: https://github.com/prometheus/procfs/tree/v0.8.0
 
 - sys
-	- golang.org/x/sys
+  - golang.org/x/sys
     - Version: v0.0.0-20220520151302-bc2c85ada10a
     - License: [BSD 3-Clause "New" or "Revised" License](https://cs.opensource.google/go/x/sys/+/bc2c85ada10aa9b6aa9607e9ac9ad0761b95cf1d:LICENSE;bpv=0)
     - Source: https://cs.opensource.google/go/x/sys/+/bc2c85ada10aa9b6aa9607e9ac9ad0761b95cf1d:;bpv=0
