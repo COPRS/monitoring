@@ -31,6 +31,10 @@ jobs:
         component: [invalidations-completeness, invalidations-timeliness]
 
     steps:
+      - name: debug pull request
+        run: |
+          echo ${{ github.event_name }}
+      
       - uses: actions/checkout@v3
 
       - name: Set zip name 
