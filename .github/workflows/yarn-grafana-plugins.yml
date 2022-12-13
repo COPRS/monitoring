@@ -1,6 +1,11 @@
 name: Yarn CI for Grafana plugins
 
 on:
+  pull_request:
+    types:
+      - opened
+    branches:    
+      - 'develop'
   push:
     paths:
       - 'grafana-monitoring/**'
