@@ -8,6 +8,7 @@ The repository also contains two FINOPS components:
 
 - [object-storage-exporter](#object-storage-exporter)
 - [resources-exporter](#resources-exporter)
+- [Grafana plugins](#grafana-plugin)
 
 ## RS-CORE Monitoring
 
