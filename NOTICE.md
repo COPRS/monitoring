@@ -1,6 +1,8 @@
 This software is distributed under the Apache Software License (ASL) v2.0, see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0 for details.
 
-Below are all the dependecies used during runtime and their respective licence.
+- Please be advised that the software Hibernate-orm is used with the LGPL License.
+
+Below are all the dependencies used during runtime and their respective licence:
 
 # trace-processor
 
@@ -63,48 +65,56 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 1.9.4
     - Licence: [Apache License 2.0](https://github.com/apache/commons-beanutils/blob/commons-beanutils-1.9.4/LICENSE.txt)
     - Source: https://github.com/apache/commons-beanutils/tree/commons-beanutils-1.9.4
+    - Copyright: Copyright 2000-2019 The Apache Software Foundation
     
 - commons-cli
   - commons-cli:commons-cli
     - Version: 1.4
     - Licence: [Apache License 2.0](https://github.com/apache/commons-cli/blob/cli-1.4/LICENSE.txt)
     - Source: https://github.com/apache/commons-cli/tree/cli-1.4
+    - Copyright: Copyright 2000-2019 The Apache Software Foundation
 
 - commons-collections
   - commons-collections:commons-collections
     - Version: 3.2.2
     - Licence:[Apache License 2.0](https://github.com/apache/commons-collections/blob/collections-3.2.2/LICENSE.txt)
     - Source: https://github.com/apache/commons-collections/tree/collections-3.2.2
+    - Copyright: Copyright 2000-2019 The Apache Software Foundation
     
 - commons-configuration2
   - org.apache.commons:commons-configuration2
     - Version: 2.8.0
     - Licence: [Apache License 2.0](https://github.com/apache/commons-configuration/blob/rel/commons-configuration-2.8.0/LICENSE.txt)
     - Source: https://github.com/apache/commons-configuration/tree/rel/commons-configuration-2.8.0
+    - Copyright: Copyright 2000-2019 The Apache Software Foundation
     
 - commons-io
   - commons-io:commons-io
     - Version: 2.11.0
     - Licence: [Apache License 2.0](https://github.com/apache/commons-io/blob/rel/commons-io-2.11.0/LICENSE.txt)
     - Source: https://github.com/apache/commons-io/tree/rel/commons-io-2.11.0
+    - Copyright: Copyright 2000-2019 The Apache Software Foundation
 
 - commons-lang3
   - org.apache.commons:commons-lang3
     - Version: 3.12.0
     - Licence: [Apache License 2.0](https://github.com/apache/commons-lang/blob/rel/commons-lang-3.12.0/LICENSE.txt)
     - Source: https://github.com/apache/commons-lang/tree/rel/commons-lang-3.12.0
+    - Copyright: Copyright 2000-2019 The Apache Software Foundation
 
 - commons-logging
   - commons-logging:commons-logging
     - Version: 1.2
     - Licence: [Apache License 2.0](https://github.com/apache/commons-logging/blob/LOGGING_1_2/LICENSE.txt)
     - Source: https://github.com/apache/commons-logging/tree/LOGGING_1_2
+    - Copyright: Copyright 2000-2019 The Apache Software Foundation
 
 - commons-text
   - org.apache.commons:commons-text
     - Version: 1.10.0
     - Licence: [Apache License 2.0](https://github.com/apache/commons-text/blob/rel/commons-text-1.10.0/LICENSE.txt)
     - Source: https://github.com/apache/commons-text/tree/rel/commons-text-1.10.0
+    - Copyright: Copyright 2000-2019 The Apache Software Foundation
 
 - core
   - com.electronwill.night-config:core
@@ -117,12 +127,14 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 5.0.0
     - Licence: [Eclipse Public License - v2.0](https://github.com/eclipse-ee4j/expressly/blob/5.0.0/LICENSE.md)
     - Source: https://github.com/eclipse-ee4j/expressly/tree/5.0.0
+    - Copyright: Copyright (C) 2003-Present The Eclipse Foundation Authors. [Authors and Contributors](https://projects.eclipse.org/projects/ee4j.expressly/who)
 
 - flyway-core
   - org.flywaydb:flyway-core
     - Version: 9.6.0
     - Licence: [Apache License 2.0](https://github.com/flyway/flyway/blob/flyway-9.6.0/LICENSE)
-    - Source: https://github.com/flyway/flyway/tree/flyway-9.6.0/flyway-core 
+    - Source: https://github.com/flyway/flyway/tree/flyway-9.6.0/flyway-core
+    - Copyright: Copyright (c) Red Gate Software Ltd 2010-2022
 
 - HdrHistogram
   - org.hdrhistogram:HdrHistogram
@@ -135,24 +147,28 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 5.1.2.Final
     - Licence: [GNU Lesser General Public License, version 2.1](https://github.com/hibernate/hibernate-commons-annotations/blob/5.1.2.Final/lgpl.txt)
     - Source: https://github.com/hibernate/hibernate-commons-annotations/tree/5.1.2.Final
+    - Copyright: Copyright (C) 2023 Red Hat, Inc.
 
 - hibernate-core
   - org.hibernate:hibernate-core
     - Version: 5.6.12.Final
     - Licence: [GNU Lesser General Public License, version 2.1](https://github.com/hibernate/hibernate-orm/blob/5.6.12/lgpl.txt)
     - Source: https://github.com/hibernate/hibernate-orm/tree/5.6.12/hibernate-core 
+    - Copyright: Copyright (C) 2023 Red Hat, Inc.
 
 - hibernate-types-52
   - com.vladmihalcea:hibernate-types-52
     - Version: 2.20.0
     - Licence: [Apache License 2.0](https://github.com/vladmihalcea/hibernate-types/blob/hibernate-types-parent-2.20.0/LICENSE)
     - Source: https://github.com/vladmihalcea/hibernate-types/tree/hibernate-types-parent-2.20.0/hibernate-types-52 
+    - Copyright: Copyright (C) 2023 Red Hat, Inc.
     
 - hibernate-validator
   - org.hibernate.validator:hibernate-validator
     - Version: 6.2.5.Final
     - Licence: [Apache License 2.0](https://github.com/hibernate/hibernate-validator/blob/8.0.0.Final/license.txt)
     - Source: https://github.com/hibernate/hibernate-validator/tree/8.0.0.Final
+    - Copyright: Copyright (C) 2023 Red Hat, Inc.
     
 - HikariCP
   - com.zaxxer:HikariCP
@@ -170,49 +186,57 @@ Below are all the dependecies used during runtime and their respective licence.
   - com.fasterxml.jackson.core:jackson-annotations
     - Version: 2.13.4
     - Licence: [Apache License 2.0](https://github.com/FasterXML/jackson-annotations/blob/jackson-annotations-2.13.4/LICENSE)
-    - Source: https://github.com/FasterXML/jackson-annotations/tree/jackson-annotations-2.13.4 
+    - Source: https://github.com/FasterXML/jackson-annotations/tree/jackson-annotations-2.13.4
+    - Copyright: Copyright 2013, FasterXML, LLC, Seattle, USA
 
 - jackson-core
   - com.fasterxml.jackson.core:jackson-core
     - Version: 2.13.4
     - Licence: [Apache License 2.0](https://github.com/FasterXML/jackson-core/blob/jackson-core-2.13.4/LICENSE)
     - Source: https://github.com/FasterXML/jackson-core/tree/jackson-core-2.13.4
+    - Copyright: Copyright 2013, FasterXML, LLC, Seattle, USA
 
 - jackson-databind
   - com.fasterxml.jackson.core:jackson-databind
     - Version: 2.13.4.2
     - Licence: [Apache License 2.0](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.13.4.2/LICENSE)
     - Source: https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.13.4.2
+    - Copyright: Copyright 2013, FasterXML, LLC, Seattle, USA
 
 - jackson-dataformat-csv
   - com.fasterxml.jackson.dataformat:jackson-dataformat-csv
     - Version: 2.13.4
     - Licence: [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
     - Source: https://github.com/FasterXML/jackson-dataformats-text/tree/jackson-dataformats-text-2.13.4/csv
+    - Copyright: Copyright 2013, FasterXML, LLC, Seattle, USA
 
 - jackson-dataformat-yaml
   - com.fasterxml.jackson.dataformat:jackson-dataformat-yaml
     - Version: 2.13.4
     - Licence: [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
     - Source: https://github.com/FasterXML/jackson-dataformats-text/tree/jackson-dataformats-text-2.13.4/yaml
+    - Copyright: Copyright 2013, FasterXML, LLC, Seattle, USA
 
 - jackson-datatype-jdk8
   - com.fasterxml.jackson.datatype:jackson-datatype-jdk8
     - Version: 2.13.4
     - Licence: [Apache License 2.0](https://github.com/FasterXML/jackson-modules-java8/blob/jackson-modules-java8-2.13.4/LICENSE)
     - Source: https://github.com/FasterXML/jackson-modules-java8/tree/jackson-modules-java8-2.13.4
+    - Copyright: Copyright 2013, FasterXML, LLC, Seattle, USA
 
 - jackson-datatype-jsr310
   - com.fasterxml.jackson.datatype:jackson-datatype-jsr310
     - Version: 2.13.4
     - Licence: [Apache License 2.0](https://github.com/FasterXML/jackson-modules-java8/blob/jackson-modules-java8-2.13.4/LICENSE)
     - Source: https://github.com/FasterXML/jackson-modules-java8/tree/jackson-modules-java8-2.13.4
+    - Copyright: Copyright 2013, FasterXML, LLC, Seattle, USA
 
 - jackson-module-parameter-names
   - com.fasterxml.jackson.module:jackson-module-parameter-names
     - Version: 2.13.4
     - Licence: [Apache License 2.0](https://github.com/FasterXML/jackson-modules-java8/blob/jackson-modules-java8-2.13.4/LICENSE)
     - Source: https://github.com/FasterXML/jackson-modules-java8/tree/jackson-modules-java8-2.13.4
+    - Copyright: Copyright 2013, FasterXML, LLC, Seattle, USA
 
 - jakarta.activation-api
   - jakarta.activation:jakarta.activation-api
@@ -255,6 +279,7 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 2.0.2
     - Licence: [Apache License 2.0](https://github.com/jakartaee/validation/blob/3.0.2/license.txt)
     - Source: https://github.com/jakartaee/validation/tree/3.0.2
+    - Copyright: Copyright (C) 2003-Present The Eclipse Foundation Authors. [Authors and Contributors](https://projects.eclipse.org/projects/ee4j.bean-validation/who)
 
 - jakarta.xml.bind-api
   - jakarta.xml.bind:jakarta.xml.bind-api
@@ -273,6 +298,7 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 1.3.2
     - Licence: [Common Development and Distribution License 1.1](https://github.com/javaee/javax.annotation/blob/1.3.2/LICENSE)
     - Source: https://github.com/javaee/javax.annotation/tree/1.3.2
+    - Copyright: Copyright (c) 2016 Oracle America, Inc.
 
 - jaxb-runtime
   - org.glassfish.jaxb:jaxb-runtime
@@ -349,7 +375,7 @@ Below are all the dependecies used during runtime and their respective licence.
 - kafka_2.13
   - org.apache.kafka:kafka_2.13
     - Version: 3.1.2
-    - Licence: [Apache License 2.0](https://github.com/apache/kafka/blob/3.1.2/LICENSEà
+    - Licence: [Apache License 2.0](https://github.com/apache/kafka/blob/3.1.2/LICENSE)
     - Source: https://github.com/apache/kafka/tree/3.1.2
 
 - kotlin-stdlib-common
@@ -411,6 +437,7 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 1.18.24
     - Licence: [MIT License](https://github.com/projectlombok/lombok/blob/v1.18.24/LICENSE)
     - Source: https://github.com/projectlombok/lombok/tree/v1.18.24
+    - Copyright: Copyright (c) 2009-2021 The Project Lombok Authors. [Authors and Contributors](https://github.com/projectlombok/lombok/blob/v1.18.24/AUTHORS)
 
 - lz4-java
   - org.lz4:lz4-java
@@ -435,6 +462,7 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 1.9.5
     - Licence: [Apache License 2.0](https://github.com/micrometer-metrics/micrometer/blob/v1.9.5/LICENSE)
     - Source: https://github.com/micrometer-metrics/micrometer/tree/v1.9.5
+    - Copyright: Copyright (c) 2017-Present VMware, Inc. All Rights Reserved.
     
 
 - netty-buffer:
@@ -442,72 +470,84 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 4.1.84.Final
     - Licence: [Apache License 2.0](https://github.com/netty/netty/blob/netty-4.1.84.Final/LICENSE.txt)
     - Source: https://github.com/netty/netty/tree/netty-4.1.84.Final/buffer
+    - Copyright: Copyright 2013 The Netty Project
 
 - netty-codec
   - io.netty:netty-codec
     - Version: 4.1.84.Final
     - Licence: [Apache License 2.0](https://github.com/netty/netty/blob/netty-4.1.84.Final/LICENSE.txt)
     - Source: https://github.com/netty/netty/tree/netty-4.1.84.Final/codec
+    - Copyright: Copyright 2013 The Netty Project
 
 - netty-common
   - io.netty:netty-common
     - Version: 4.1.84.Final
     - Licence: [Apache License 2.0](https://github.com/netty/netty/blob/netty-4.1.84.Final/LICENSE.txt)
     - Source: https://github.com/netty/netty/tree/netty-4.1.84.Final/common
+    - Copyright: Copyright 2013 The Netty Project
 
 - netty-handler
   - io.netty:netty-handler
     - Version: 4.1.84.Final
     - Licence: [Apache License 2.0](https://github.com/netty/netty/blob/netty-4.1.84.Final/LICENSE.txt)
     - Source: https://github.com/netty/netty/tree/netty-4.1.84.Final/handler
+    - Copyright: Copyright 2013 The Netty Project
 
 - netty-resolver
   - io.netty:netty-resolver
     - Version: 4.1.84.Final
     - Licence: [Apache License 2.0](https://github.com/netty/netty/blob/netty-4.1.84.Final/LICENSE.txt)
     - Source: https://github.com/netty/netty/tree/netty-4.1.84.Final/resolver
+    - Copyright: Copyright 2013 The Netty Project
 
 - netty-transport-classes-epoll
   - io.netty:netty-transport-classes-epoll
     - Version: 4.1.84.Final
     - Licence: [Apache License 2.0](https://github.com/netty/netty/blob/netty-4.1.84.Final/LICENSE.txt)
-    - Source: 
+    - Source: https://github.com/netty/netty/tree/netty-4.1.84.Final/transport-classes-epoll
+    - Copyright: Copyright 2013 The Netty Project
 
 - netty-transport-native-epoll
   - io.netty:netty-transport-native-epoll
     - Version: 4.1.84.Final
     - Licence: [Apache License 2.0](https://github.com/netty/netty/blob/netty-4.1.84.Final/LICENSE.txt)
     - Source: https://github.com/netty/netty/tree/netty-4.1.84.Final/transport-native-epoll
+    - Copyright: Copyright 2013 The Netty Project
 
 - netty-transport-native-unix-common
   - io.netty:netty-transport-native-unix-common
     - Version: 4.1.84.Final
     - Licence: [Apache License 2.0](https://github.com/netty/netty/blob/netty-4.1.84.Final/LICENSE.txt)
     - Source: https://github.com/netty/netty/tree/netty-4.1.84.Final/transport-native-unix-common
+    - Copyright: Copyright 2013 The Netty Project
 
 - netty-transport
   - io.netty:netty-transport
     - Version: 4.1.84.Final
     - Licence: [Apache License 2.0](https://github.com/netty/netty/blob/netty-4.1.84.Final/LICENSE.txt)
     - Source: https://github.com/netty/netty/tree/netty-4.1.84.Final/transport
+    - Copyright: Copyright 2013 The Netty Project
 
 - postgresql
   - org.postgresql:postgresql
     - Version: 42.5.0
     - Licence: [BSD 2-Clause "Simplified" License](https://github.com/pgjdbc/pgjdbc/blob/REL42.5.0/LICENSE)
     - Source: https://github.com/pgjdbc/pgjdbc/tree/REL42.5.0
+    - Copyright: Copyright (c) 1997, PostgreSQL Global Development Group. All rights reserved.
 
 - reactive-streams
   - org.reactivestreams:reactive-streams
     - Version: 1.0.4
     - Licence: [MIT License](https://github.com/reactive-streams/reactive-streams-jvm/blob/v1.0.4/LICENSE)
     - Source: https://github.com/reactive-streams/reactive-streams-jvm/tree/v1.0.4
+    - Copyright 2014 Reactive Streams
 
 - reactor-core
   - io.projectreactor:reactor-core
     - Version: 3.4.24
     - Licence: [Apache License 2.0](https://github.com/reactor/reactor-core/blob/v3.4.24/LICENSE)
     - Source: https://github.com/reactor/reactor-core/tree/v3.4.24
+    - Copyright: Copyright (c) 2017-2021 VMware Inc. or its affiliates, All Rights Reserved.
 
 - scala-collection-compat_2.13
   - org.scala-lang.modules:scala-collection-compat_2.13
@@ -544,6 +584,7 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 1.7.36
     - Licence: [MIT License](https://github.com/qos-ch/slf4j/tree/v_1.7.36/slf4j-api/LICENSE.txt)
     - Source: https://github.com/qos-ch/slf4j/tree/v_1.7.36/slf4j-api
+    - Copyright: Copyright (c) 2004-2022 QOS.ch Sarl (Switzerland)
 
 - snakeyaml
   - org.yaml:snakeyaml
@@ -562,252 +603,294 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-aop
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-aspects
   - org.springframework:spring-aspects
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-aspects
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-beans
   - org.springframework:spring-beans
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-beans
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-actuator-autoconfigure
   - org.springframework.boot:spring-boot-actuator-autoconfigure
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-actuator-autoconfigure
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-actuator
   - org.springframework.boot:spring-boot-actuator
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-actuator
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-autoconfigure
   - org.springframework.boot:spring-boot-autoconfigure
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-autoconfigure
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-starter-actuator
   - org.springframework.boot:spring-boot-starter-actuator
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-starters/spring-boot-starter-actuator
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-starter-aop
   - org.springframework.boot:spring-boot-starter-aop
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-starters/spring-boot-starter-aop
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-starter-data-jpa
   - org.springframework.boot:spring-boot-starter-data-jpa
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-starters/spring-boot-starter-data-jpa
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-starter-jdbc
   - org.springframework.boot:spring-boot-starter-jdbc
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-starters/spring-boot-starter-jdbc
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-starter-json
   - org.springframework.boot:spring-boot-starter-json
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-starters/spring-boot-starter-json
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-starter-log4j2
   - org.springframework.boot:spring-boot-starter-log4j2
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-starters/spring-boot-starter-log4j2
+    - CCopyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-starter-tomcat
   - org.springframework.boot:spring-boot-starter-tomcat
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-starters/spring-boot-starter-tomcat
+    - CCopyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-starter-validation
   - org.springframework.boot:spring-boot-starter-validation
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-starters/spring-boot-starter-validation
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-starter-web
   - org.springframework.boot:spring-boot-starter-web
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-starters/spring-boot-starter-web
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot-starter
   - org.springframework.boot:spring-boot-starter
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot-starters/spring-boot-starter
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-boot
   - org.springframework.boot:spring-boot
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-boot/blob/v2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-boot/tree/v2.7.5/spring-boot-project/spring-boot
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-cloud-function-context
   - org.springframework.cloud:spring-cloud-function-context
     - Version: 3.2.7
     - Licence: [Apache License 2.0](https://github.com/spring-cloud/spring-cloud-function/blob/v3.2.7/LICENSE)
     - Source: https://github.com/spring-cloud/spring-cloud-function/tree/v3.2.7/spring-cloud-function-context
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-cloud-function-core
   - org.springframework.cloud:spring-cloud-function-core
     - Version: 3.2.7
     - Licence: [Apache License 2.0](https://github.com/spring-cloud/spring-cloud-function/blob/v3.2.7/LICENSE)
     - Source: https://github.com/spring-cloud/spring-cloud-function/tree/v3.2.7/spring-cloud-function-core
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-cloud-stream-binder-kafka-core
   - org.springframework.cloud:spring-cloud-stream-binder-kafka-core
     - Version: 3.2.5
     - Licence: [Apache License 2.0](https://github.com/spring-cloud/spring-cloud-stream/blob/v3.2.5/binders/kafka-binder/LICENSE)
     - Source: https://github.com/spring-cloud/spring-cloud-stream/tree/v3.2.5/binders/kafka-binder/spring-cloud-stream-binder-kafka-core
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-cloud-stream-binder-kafka
   - org.springframework.cloud:spring-cloud-stream-binder-kafka
     - Version: 3.2.5
     - Licence: [Apache License 2.0](https://github.com/spring-cloud/spring-cloud-stream/blob/v3.2.5/binders/kafka-binder/LICENSE)
     - Source: https://github.com/spring-cloud/spring-cloud-stream/tree/v3.2.5/binders/kafka-binder/spring-cloud-stream-binder-kafka
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-cloud-stream
   - org.springframework.cloud:spring-cloud-stream
     - Version: 3.2.5
     - Licence: [Apache License 2.0](https://github.com/spring-cloud/spring-cloud-stream/blob/v3.2.5/LICENSE)
     - Source: https://github.com/spring-cloud/spring-cloud-stream/tree/v3.2.5
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-context
   - org.springframework:spring-context
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-context
+    - CCopyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-core
   - org.springframework:spring-core
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-core
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-data-commons
   - org.springframework.data:spring-data-commons
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-data-commons/blob/2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-data-commons/tree/2.7.5
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-data-jpa
   - org.springframework.data:spring-data-jpa
     - Version: 2.7.5
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-data-jpa/blob/2.7.5/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-data-jpa/blob/2.7.5/LICENSE.txt
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-expression
   - org.springframework:spring-expression
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-expression
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-integration-core
   - org.springframework.integration:spring-integration-core
     - Version: 5.5.15
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-integration/blob/v5.5.15/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-integration/tree/v5.5.15/spring-integration-core/src
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-integration-jmx
   - org.springframework.integration:spring-integration-jmx
     - Version: 5.5.15
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-integration/blob/v5.5.15/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-integration/tree/v5.5.15/spring-integration-jmx/src
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-integration-kafka
   - org.springframework.integration:spring-integration-kafka
     - Version: 5.5.15
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-integration/blob/v5.5.15/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-integration/tree/v5.5.15/spring-integration-kafka/src
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-jcl
   - org.springframework:spring-jcl
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-jcl
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-jdbc
   - org.springframework:spring-jdbc
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-jdbc
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-kafka
   - org.springframework.kafka:spring-kafka
     - Version: 2.8.10
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-kafka/blob/main/LICENCE.txt)
     - Source: https://github.com/spring-projects/spring-kafka/tree/v2.8.10
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-messaging
   - org.springframework:spring-messaging
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-messaging
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-orm
   - org.springframework:spring-orm
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-orm
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-retry
   - org.springframework.retry:spring-retry
     - Version: 1.3.4
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-retry/blob/v1.3.4/LICENSE-2.0.txt)
     - Source: https://github.com/spring-projects/spring-retry/tree/v1.3.4
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-tx
   - org.springframework:spring-tx
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-tx 
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
     
 - spring-web
   - org.springframework:spring-web
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-web
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - spring-webmvc
   - org.springframework:spring-webmvc
     - Version: 5.3.23
     - Licence: [Apache License 2.0](https://github.com/spring-projects/spring-framework/blob/v5.3.23/LICENSE.txt)
     - Source: https://github.com/spring-projects/spring-framework/tree/v5.3.23/spring-webmvc
+    - Copyright: Copyright (c) 2017-Present The Spring Authors.
 
 - tomcat-embed-core
   - org.apache.tomcat.embed:tomcat-embed-core
     - Version: 9.0.68
     - Licence: [Apache License 2.0](https://github.com/apache/tomcat/blob/9.0.68/LICENSE)
     - Source: https://github.com/apache/tomcat/blob/9.0.68/res/maven/tomcat-embed-core.pom
+    - Copyright 1999-2022 The Apache Software Foundation
 
 - tomcat-embed-el
   - org.apache.tomcat.embed:tomcat-embed-el
     - Version: 9.0.68
     - Licence: [Apache License 2.0](https://github.com/apache/tomcat/blob/9.0.68/LICENSE)
     - Source: https://github.com/apache/tomcat/blob/9.0.68/res/maven/tomcat-embed-el.pom
+    - Copyright 1999-2022 The Apache Software Foundation
 
 - tomcat-embed-websocket
   - org.apache.tomcat.embed:tomcat-embed-websocket
     - Version: 9.0.68
     - Licence: [Apache License 2.0](https://github.com/apache/tomcat/blob/9.0.68/LICENSE)
     - Source: https://github.com/apache/tomcat/blob/9.0.68/res/maven/tomcat-embed-websocket.pom
+    - Copyright 1999-2022 The Apache Software Foundation
     
 - toml
   - com.electronwill.night-config:toml
@@ -832,6 +915,7 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: 2.0.1.Final
     - Licence: [Apache License 2.0](https://github.com/jakartaee/validation/blob/2.0.1.Final/license.txt)
     - Source: https://github.com/jakartaee/validation/tree/2.0.1.Final
+    - Copyright: Copyright (c) 2023 Red Hat Inc. [Authors and Contributors](https://github.com/jakartaee/validation/blob/2.0.1.Final/copyright.txt)
 
 - zookeeper-jute
   - org.apache.zookeeper:zookeeper-jute
@@ -858,42 +942,49 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: v1.44.114
     - License: [Apache License 2.0](https://github.com/aws/aws-sdk-go/blob/v1.44.114/LICENSE.txt)
     - Source: https://github.com/aws/aws-sdk-go/tree/v1.44.114
+    - Copyright: Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 - prometheus
   - github.com/prometheus/client_golang
     - Version: v1.13.0
     - License: [Apache License 2.0](https://github.com/prometheus/client_golang/blob/v1.13.0/LICENSE)
     - Source: https://github.com/prometheus/client_golang/tree/v1.13.0
+    - Copyright: Copyright 2012-2015 The Prometheus Authors
 
 - perks
   - github.com/beorn7/perks
     - Version: v1.0.1
     - License: [MIT Licence](https://github.com/beorn7/perks/blob/v1.0.1/LICENSE)
     - Source: https://github.com/beorn7/perks/tree/v1.0.1
+    - Copyright: Copyright (C) 2013 Blake Mizerany
 
 - xxhash
   - github.com/cespare/xxhash/v2
     - Version: v2.1.2
     - License: [MIT Licence](https://github.com/cespare/xxhash/blob/v2.1.2/LICENSE.txt)
     - Source: https://github.com/cespare/xxhash/tree/v2.1.2
+    - Copyright: Copyright (c) 2016 Caleb Spare
     
 - protobuf
   - github.com/golang/protobuf
     - Version: v1.5.2
     - License: [BSD 3-Clause "New" or "Revised" License](https://github.com/golang/protobuf/blob/v1.5.2/LICENSE)
     - Source: https://github.com/golang/protobuf/tree/v1.5.2
+    - Copyright: Copyright 2010 The Go Authors.  All rights reserved.
 
 - go-jmespath
   - github.com/jmespath/go-jmespath
     - Version: v0.4.0
     - License: [Apache License 2.0](https://github.com/jmespath/go-jmespath/blob/v0.4.0/LICENSE)
     - Source: https://github.com/jmespath/go-jmespath/tree/v0.4.0
+    - Copyright: Copyright 2015 James Saryerwinnie
 
 - golang_protobuf_extensions
   - github.com/matttproud/golang_protobuf_extensions
     - Version: v1.0.1
     - License: [Apache License 2.0](https://github.com/matttproud/golang_protobuf_extensions/blob/v1.0.1/LICENSE)
     - Source: https://github.com/matttproud/golang_protobuf_extensions/tree/v1.0.1
+    - Copyright: Copyright 2012 Matt T. Proud (matt.proud@gmail.com)
 
 - client_model
   - github.com/prometheus/client_model
@@ -906,25 +997,28 @@ Below are all the dependecies used during runtime and their respective licence.
     - Version: v0.37.0
     - License: [Apache License 2.0](https://github.com/prometheus/common/blob/v0.37.0/LICENSE)
     - Source: https://github.com/prometheus/common/tree/v0.37.0
+    - Copyright: Copyright 2012-2015 The Prometheus Authors
 
 - procfs
   - github.com/prometheus/procfs
     - Version: v0.8.0
     - License: [Apache License 2.0](https://github.com/prometheus/procfs/blob/v0.8.0/LICENSE)
     - Source: https://github.com/prometheus/procfs/tree/v0.8.0
+    - Copyright: Copyright 2012-2015 The Prometheus Authors
 
 - sys
   - golang.org/x/sys
     - Version: v0.0.0-20220520151302-bc2c85ada10a
     - License: [BSD 3-Clause "New" or "Revised" License](https://cs.opensource.google/go/x/sys/+/bc2c85ada10aa9b6aa9607e9ac9ad0761b95cf1d:LICENSE;bpv=0)
     - Source: https://cs.opensource.google/go/x/sys/+/bc2c85ada10aa9b6aa9607e9ac9ad0761b95cf1d:;bpv=0
+    - Copyright: Copyright 2010 The Go Authors
 	
 - protobuf-go
   - google.golang.org/protobuf
     - Version: v1.28.1
     - License: [BSD 3-Clause "New" or "Revised" License](https://github.com/protocolbuffers/protobuf-go/blob/v1.28.1/LICENSE)
     - Source: https://github.com/protocolbuffers/protobuf-go/tree/v1.28.1
-
+    - Copyright: Copyright 2010 The Go Authors
 # finops_ressources_exporter
 
 - prometheus
