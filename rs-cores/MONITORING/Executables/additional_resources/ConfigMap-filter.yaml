@@ -87,7 +87,7 @@ data:
           log.trace.task.name: JobProcessing
           log.trace.task.event: END
           log.trace.task.status: OK
-          log.trace.header.rs_chain_name: S3-L0P
+          log.trace.header.rs_chain_name: S3-L0P|S3-OL1-NRT|S3-OL2-NRT
           log.trace.task.output[filename_string]: .+
       -
         name: JobProcessing_Product-onlyMissingOutput
