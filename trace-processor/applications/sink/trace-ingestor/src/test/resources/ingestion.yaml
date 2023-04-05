@@ -179,6 +179,8 @@ ingestions:
         to: processing.workflow
       - from: log.trace.header.rs_chain_name
         to: processing.rs_chain_name
+      - from: log.trace.header.rs_chain_version
+        to: processing.rs_chain_version
       - from: log.trace.task.missing_output[product_metadata_custom_object]
         remove_entity_if_null: true
         to: missing_products.product_metadata_custom
@@ -203,3 +205,7 @@ ingestions:
       - query: processing.id in (select ol.processing_id from output_list ol where ol.product_id in <output_product.id>) and processing.rs_chain_name = <processing.rs_chain_name>
         rules:
           log.trace.header.rs_chain_name: output_list|l3|l2
+      - query: processing.id in (select ili.processing_id from input_list_internal ili where ili.product_id in <input_product.id>) and processing.rs_chain_name = <processing.rs_chain_name> and processing.rs_chain_version = <processing.rs_chain_version>
+        rules:
+          log.trace.header.rs_chain_name: s2-l1
+          log.kubernetes[labels][spring-application-name]: ^(?!ew-l1c$).*$
