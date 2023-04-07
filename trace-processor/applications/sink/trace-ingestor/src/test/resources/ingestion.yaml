@@ -208,4 +208,4 @@ ingestions:
       - query: processing.id in (select ili.processing_id from input_list_internal ili where ili.product_id in <input_product.id>) and processing.rs_chain_name = <processing.rs_chain_name> and processing.rs_chain_version = <processing.rs_chain_version>
         rules:
           log.trace.header.rs_chain_name: s2-l1
-          log.kubernetes[labels][spring-application-name]: ^(?!ew-l1c$).*$
+          log.kubernetes[labels][spring-application-name]: ^((?!ew-l1c).)*$

@@ -148,7 +148,7 @@ public class ProcessingIngestionTests {
 
     @Test
     public void testGenerates2L1Duplicate() {
-        FilteredTrace filteredTrace = getProcessingRefWithKubeNotL1C("duplicate_processing");
+        FilteredTrace filteredTrace = getProcessingRefWithKube("duplicate_processing", "ew-l1s");
         TraceIngestorSink sink = conf.traceIngestor(factory, entityIngestor);
 
 
@@ -167,7 +167,7 @@ public class ProcessingIngestionTests {
 
     @Test
     public void testKubernetesRecognized() {
-        FilteredTrace traceLog = getProcessingRefWithKube("duplicate_processing");
+        FilteredTrace traceLog = getProcessingRefWithKube("duplicate_processing", "2-l1-1574-part1-ew-l1c-v1");
         TraceIngestorSink sink = conf.traceIngestor(factory, entityIngestor);
 
 
@@ -258,7 +258,7 @@ public class ProcessingIngestionTests {
         return new FilteredTrace(filterName, traceLog);
     }
 
-    private FilteredTrace getProcessingRefWithKube(String filterName) {
+    private FilteredTrace getProcessingRefWithKube(String filterName, String apllicationName) {
         final var header = new Header();
         header.setType(TraceType.REPORT);
         header.setMission("S2");
@@ -298,73 +298,7 @@ public class ProcessingIngestionTests {
         final Map<String, Object> kube = new HashMap<>();
         kube.put(
                 "labels", Map.of(
-                        "spring-application-name", "ew-l1c",
-                        "spring-app-id", "s2-l1-1574-part1-ew-l1s-v1"
-                ));
-        task.setInput(input);
-
-        task.setDurationInSeconds(60.0);
-
-        task.setMissingOutput(List.of());
-
-        final var trace = new Trace();
-        trace.setHeader(header);
-        trace.setTask(task);
-
-        final var custom = new HashMap<String, Object>();
-        custom.put("key1", "value1");
-        custom.put("key2", "value2");
-        custom.put("key3", "value3");
-        trace.setCustom(custom);
-
-        final var traceLog = new TraceLog();
-        traceLog.setTrace(trace);
-        traceLog.setKubernetes(kube);
-
-        return new FilteredTrace(filterName, traceLog);
-    }
-
-    private FilteredTrace getProcessingRefWithKubeNotL1C(String filterName) {
-        final var header = new Header();
-        header.setType(TraceType.REPORT);
-        header.setMission("S2");
-        header.setLevel(Level.INFO);
-        header.setWorkflow(Workflow.NOMINAL);
-        header.setTimestamp(Instant.parse("2022-10-05T14:13:30.00Z"));
-        header.setRsChainName("s2-l1");
-        header.setRsChainVersion("1.5.0-dev");
-
-        final var task = new EndTask();
-        //task.setSatellite("S2B");
-
-        final var output = new HashMap<String, Object>();
-        output.put("filename_strings", List.of(
-                "GS2B_20170322T000000_013601_N02.01",
-                "GS2B_20170322T000000_013601_N02.02.zip",
-                "GS2B_20170322T000000_013601_N02.03.zip",
-                "GS2B_20170322T000000_013601_N02.04")
-        );
-        task.setOutput(output);
-
-        final var input = new HashMap<String, Object>();
-        input.put("filename_strings", List.of(
-                "DCS_05_S2B_20210927072424023813_ch1_DSDB_00001.raw",
-                "DCS_05_S2B_20210927072424023813_ch1_DSDB_00002.raw",
-                "DCS_05_S2B_20210927072424023813_ch1_DSDB_00003.raw",
-                "DCS_05_S2B_20210927072424023813_ch2_DSDB_00001.raw",
-                "DCS_05_S2B_20210927072424023813_ch2_DSDB_00002.raw",
-                "DCS_05_S2B_20210927072424023813_ch2_DSDB_00003.raw",
-                "S1A_OPER_AMH_ERRMAT_W.XML",
-                "S2A_OPER_AUX_TEST_TE",
-                "S3A_OL_0_TESTAX_12345678T123456_12345678T123456_12345678T123456___________________123_12345678.SEN3",
-                "GS2B_20170322T000000_013601_N02.05",
-                "GS2B_20170322T000000_013601_N02.06.zip")
-        );
-
-        final Map<String, Object> kube = new HashMap<>();
-        kube.put(
-                "labels", Map.of(
-                        "spring-application-name", "ew-l1s",
+                        "spring-application-name", apllicationName,
                         "spring-app-id", "s2-l1-1574-part1-ew-l1s-v1"
                 ));
         task.setInput(input);
