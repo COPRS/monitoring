@@ -19,7 +19,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.Instant;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -43,12 +45,12 @@ public class ProcessingIngestionTests {
 
 
     @After
-    public void setUpAfterTest () {
+    public void setUpAfterTest() {
         entityIngestor.deleteAll();
     }
 
     @Test
-    public void testNominal () {
+    public void testNominal() {
         // Given
         final var sink = conf.traceIngestor(factory, entityIngestor);
         final var processingRef = getProcessingRef("processing_all");
@@ -78,7 +80,7 @@ public class ProcessingIngestionTests {
     }
 
     @Test
-    public void testWithMissingOutput () {
+    public void testWithMissingOutput() {
         // Given
         final var sink = conf.traceIngestor(factory, entityIngestor);
         final var processingRef = getProcessingRefWithMissingProducts("processing_all");
@@ -96,7 +98,7 @@ public class ProcessingIngestionTests {
     }
 
     @Test
-    public void testExistingEntity () {
+    public void testExistingEntity() {
         // Given
         final var sink = conf.traceIngestor(factory, entityIngestor);
         final var processingRef = getProcessingRef("processing_all");
@@ -117,7 +119,7 @@ public class ProcessingIngestionTests {
     }
 
     @Test
-    public void testInputOnly () {
+    public void testInputOnly() {
         // Given
         final var sink = conf.traceIngestor(factory, entityIngestor);
         final var processingRef = getProcessingRef("processing_input");
@@ -131,7 +133,7 @@ public class ProcessingIngestionTests {
     }
 
     @Test
-    public void testOutputOnly () {
+    public void testOutputOnly() {
         // Given
         final var sink = conf.traceIngestor(factory, entityIngestor);
         final var processingRef = getProcessingRef("processing_output");
@@ -144,9 +146,46 @@ public class ProcessingIngestionTests {
                 .isEmpty();
     }
 
+    @Test
+    public void testGenerates2L1Duplicate() {
+        FilteredTrace filteredTrace = getProcessingRefWithKube("duplicate_processing", "ew-l1s");
+        TraceIngestorSink sink = conf.traceIngestor(factory, entityIngestor);
+
+
+        //when
+        sink.accept(toMessage(filteredTrace));
+        //trigger duplication
+        sink.accept(toMessage(filteredTrace));
+
+        //Then
+        List<Processing> processings = entityIngestor.findAll(Processing.class);
+        assertThat(processings)
+                .hasSize(2)
+                .anyMatch(Processing::isDuplicate);
+
+    }
+
+    @Test
+    public void testKubernetesRecognized() {
+        FilteredTrace traceLog = getProcessingRefWithKube("duplicate_processing", "2-l1-1574-part1-ew-l1c-v1");
+        TraceIngestorSink sink = conf.traceIngestor(factory, entityIngestor);
+
+
+        //when
+        sink.accept(toMessage(traceLog));
+        //trigger duplication
+        sink.accept(toMessage(traceLog));
+
+        //Then
+        List<Processing> processings = entityIngestor.findAll(Processing.class);
+        assertThat(processings)
+                .hasSize(2)
+                .noneMatch(Processing::isDuplicate);
+
+    }
 
     // -- Helper -- //
-    private FilteredTrace getProcessingRefWithMissingProducts (String filterName) {
+    private FilteredTrace getProcessingRefWithMissingProducts(String filterName) {
         final var ref = getProcessingRef(filterName);
 
         final var missingOutput1 = new HashMap<String, Object>();
@@ -159,11 +198,12 @@ public class ProcessingIngestionTests {
         missingOutput2.put("end_to_end_product_boolean", false);
         missingOutput2.put("product_metadata_custom_object", List.of(Map.of("pmco3", "value3")));
 
-        ((EndTask)(ref.getLog().getTrace().getTask())).setMissingOutput(List.of(missingOutput1, missingOutput2));
+        ((EndTask) (ref.getLog().getTrace().getTask())).setMissingOutput(List.of(missingOutput1, missingOutput2));
 
         return ref;
     }
-    private FilteredTrace getProcessingRef (String filterName) {
+
+    private FilteredTrace getProcessingRef(String filterName) {
         final var header = new Header();
         header.setType(TraceType.REPORT);
         header.setMission("S2");
@@ -215,6 +255,71 @@ public class ProcessingIngestionTests {
 
         final var traceLog = new TraceLog();
         traceLog.setTrace(trace);
+        return new FilteredTrace(filterName, traceLog);
+    }
+
+    private FilteredTrace getProcessingRefWithKube(String filterName, String apllicationName) {
+        final var header = new Header();
+        header.setType(TraceType.REPORT);
+        header.setMission("S2");
+        header.setLevel(Level.INFO);
+        header.setWorkflow(Workflow.NOMINAL);
+        header.setTimestamp(Instant.parse("2022-10-05T14:13:30.00Z"));
+        header.setRsChainName("s2-l1");
+        header.setRsChainVersion("1.5.0-dev");
+
+        final var task = new EndTask();
+        //task.setSatellite("S2B");
+
+        final var output = new HashMap<String, Object>();
+        output.put("filename_strings", List.of(
+                "GS2B_20170322T000000_013601_N02.01",
+                "GS2B_20170322T000000_013601_N02.02.zip",
+                "GS2B_20170322T000000_013601_N02.03.zip",
+                "GS2B_20170322T000000_013601_N02.04")
+        );
+        task.setOutput(output);
+
+        final var input = new HashMap<String, Object>();
+        input.put("filename_strings", List.of(
+                "DCS_05_S2B_20210927072424023813_ch1_DSDB_00001.raw",
+                "DCS_05_S2B_20210927072424023813_ch1_DSDB_00002.raw",
+                "DCS_05_S2B_20210927072424023813_ch1_DSDB_00003.raw",
+                "DCS_05_S2B_20210927072424023813_ch2_DSDB_00001.raw",
+                "DCS_05_S2B_20210927072424023813_ch2_DSDB_00002.raw",
+                "DCS_05_S2B_20210927072424023813_ch2_DSDB_00003.raw",
+                "S1A_OPER_AMH_ERRMAT_W.XML",
+                "S2A_OPER_AUX_TEST_TE",
+                "S3A_OL_0_TESTAX_12345678T123456_12345678T123456_12345678T123456___________________123_12345678.SEN3",
+                "GS2B_20170322T000000_013601_N02.05",
+                "GS2B_20170322T000000_013601_N02.06.zip")
+        );
+
+        final Map<String, Object> kube = new HashMap<>();
+        kube.put(
+                "labels", Map.of(
+                        "spring-application-name", apllicationName,
+                        "spring-app-id", "s2-l1-1574-part1-ew-l1s-v1"
+                ));
+        task.setInput(input);
+
+        task.setDurationInSeconds(60.0);
+
+        task.setMissingOutput(List.of());
+
+        final var trace = new Trace();
+        trace.setHeader(header);
+        trace.setTask(task);
+
+        final var custom = new HashMap<String, Object>();
+        custom.put("key1", "value1");
+        custom.put("key2", "value2");
+        custom.put("key3", "value3");
+        trace.setCustom(custom);
+
+        final var traceLog = new TraceLog();
+        traceLog.setTrace(trace);
+        traceLog.setKubernetes(kube);
 
         return new FilteredTrace(filterName, traceLog);
     }
