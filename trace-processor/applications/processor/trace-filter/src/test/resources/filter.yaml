@@ -31,3 +31,12 @@ filters:
       log.trace.task.status: OK
       log.trace.message.content: End processing of
       log.trace.task.output[filename_strings][0]: .*ch2_DSDB.* |.*\.raw
+  -
+    name: QUOTETEST
+    rules:
+      log.trace.task.name: QuoteTest
+      log.trace.header.mission: S2
+      log.trace.header.type: REPORT
+      log.trace.task.event: END
+      log.trace.task.error_code: 0
+      log.trace.task.status: OK
