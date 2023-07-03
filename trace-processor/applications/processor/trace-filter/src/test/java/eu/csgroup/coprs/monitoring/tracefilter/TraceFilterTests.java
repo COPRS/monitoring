@@ -121,6 +121,18 @@ public class TraceFilterTests {
         assertThat(res).isFalse();
     }
 
+    @Test
+    public void testEmbeddedQuotesStillEscaped() {
+        // Given
+        final var processor = conf.traceFilter(jsonValidator, factory);
+        final var content = getContent("trace-quotes.json");
+
+        //When
+        final var trace = processor.apply(toMessage(content));
+
+        assertThat(trace).hasSize(1);
+    }
+
     protected static String getContent(String classpathResource) {
         try {
             return IOUtils.resourceToString(classpathResource, StandardCharsets.UTF_8, TraceFilterTests.class.getClassLoader());
