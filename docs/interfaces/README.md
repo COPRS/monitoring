@@ -1,18 +1,7 @@
+### Copernicus Reference System
 # Monitoring - Interface Control Document
-
-## Document properties
-
-|    |   |
-| -: | - |
-|    **Reference** | : CSGF-CSC-RS-PRD-ICD-MON |
-|        **Issue** | 2 |
-|   **Issue date** | 16 Sep 2022 |
-|  **Prepared by** | **Cyrille BOUISSON**  *(Architect / Technical Manager)* |
-|  **Approved by** | **Jonathan TAGLIONE** (Quality Manager) + **Nicolas Leconte** (Technical Manager) |
-|  **Released by** | **Stéphane HURIEZ** (Project Manager) |
-|     **Doc type** | SCF |
-|       **No WBS** | WP-3000-C |
-
+### Reference System version V2.0
+---
 ## Document Summary
 
 This document is the Interface Control Document for Monitoring of Reference System. This document will be completed all along the software development lifecycle.
