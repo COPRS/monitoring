@@ -11,6 +11,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.6.0-rc1] - 2023-07-17
+### Changed
+- Update Readme
+- Added Copyright to NOTICE.md and harmonized Readme titles
+### Fixed
+- [#870 - [Rs core Monitoring] Add S3 OL1 & OL2 NRT products to the monitoring](https://github.com/COPRS/rs-issues/issues/870)
+- [#890 - [Rs core Monitoring] Added exclusion rule for the ew-l1c, avoiding unnecessary Duplicate flags](https://github.com/COPRS/rs-issues/issues/890)
+- [#996 - [Rs core Monitoring] Fixed duplicate Processing queries](https://github.com/COPRS/rs-issues/issues/996)
+- [#1016 - [MONITORING] Fixed json mapping for Trace messages that contain quotes](https://github.com/COPRS/rs-issues/issues/1016)
+
 ## [1.5.0-rc1] - 2023-01-04
 ### Added
 - [#735 - [MONITORING] Add information "late" and "duplicate" for each product.](https://github.com/COPRS/rs-issues/issues/735)
@@ -20,7 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Update configuration file of trace-filter and trace-ingestor to handle s2-l1 processing (#492)
 ### Deprecated
 - Remove old behavior on trace parser
-### Fix
+### Fixed
 - [#749 - [BUG] [RS core Monitoring] does not ingest most of the processing.](https://github.com/COPRS/rs-issues/issues/749)
 - [#755 - [BUG] [TRACE] [RS core Monitoring] Field "duplicate" not set to "true" when several processing are linked to same chunk or DSIB](https://github.com/COPRS/rs-issues/issues/755)
 - Use OneToOne relation instead of ManyToOne between Product and InputListInternal/OutputList
