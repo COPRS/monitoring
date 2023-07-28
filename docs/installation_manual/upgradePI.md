@@ -610,6 +610,7 @@ CREATE OR REPLACE TRIGGER insert_pi_type_into_missing_product
 
 ## PI computing requests ## 
  To retrieve PI values, you can use this requests.
+ 
  For completeness.
  ```
 /* PRODUCTS on time without delay */
