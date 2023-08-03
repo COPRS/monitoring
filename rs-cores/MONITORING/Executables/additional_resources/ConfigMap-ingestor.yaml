@@ -168,7 +168,7 @@ data:
             action: SUBSTRACT al1 al2
             to: output_product.generation_begin_date
           - from: log.trace.task.input[filename_strings]
-            action: FORMAT ^S[0-9][A-Z].+(?=.zip)$|^S[0-9][A-Z].+$ %1$s
+            action: FORMAT (?!(^S1.*(AUX_|AMH_|AMV_|MPL_ORB).*)|(S1.*(_OPER_REP_MP_MP__PDMC_|_OPER_REP__SUP___|_OPER_MPL_SP.{4}_PDMC_|_OPER_REP_STNACQ_.{4}_|_OPER_REP_STNUNV_.{4}_|_OPER_AM[VH_]_FAILUR_MPC__|_OPER_REP__MACP__).*\.(zip|ZIP))|((S2)(A|B|_)_(OPER|TEST)_((AUX|GIP)_[0-9A-Z_]{7})(.*)\.TGZ)|(S3[AB_]_([0-9a-zA-Z_]{9})AX_([0-9]{8}T[0-9]{6})_([0-9]{8}T[0-9]{6})_([0-9]{8}T[0-9]{6})_(_{17})_([0-9a-zA-Z_]{3})_(((O|F|R|D|_)_(NR|NT|ST|SN|NS|NN|AL|__)_([a-zA-Z0-9_]{3}))|_{8})\.SEN3\.(zip|ZIP))$)(S[0-9][A-Z].+(?=.zip)|S[0-9][A-Z].+$) %1$s
             to: input_product.filename
           - from: log.trace.task.status
             to: processing.status
@@ -204,10 +204,15 @@ data:
           - query: processing.id in (select ile.processing_id from input_list_external ile where ile.external_input_id in <chunk.id,dsib.id>) and processing.rs_chain_name = <processing.rs_chain_name> and processing.rs_chain_version = <processing.rs_chain_version>
             rules:
               log.trace.header.rs_chain_name: S1-L0AIOP|s2-l0u|S3-ACQ
-          - query: processing.id in (select ol.processing_id from output_list ol where ol.product_id in <output_product.id>) and processing.rs_chain_name = <processing.rs_chain_name> and processing.rs_chain_version = <processing.rs_chain_version>
-            rules:
-              log.trace.header.rs_chain_name: S1-L0ASP|S1-L1|S1-L2|s2-l0c|s2-l1|s2-l2
           - query: processing.id in (select ili.processing_id from input_list_internal ili where ili.product_id in <input_product.id>) and processing.rs_chain_name = <processing.rs_chain_name> and processing.rs_chain_version = <processing.rs_chain_version>
+            rules:
+              log.trace.header.rs_chain_name: S1-L0ASP|S1-L1|S1-L2|s2-l0c|s2-l2
+          - query: processing.id in (select ili.processing_id from input_list_internal ili where ili.product_id in <input_product.id>) and processing.rs_chain_name = <processing.rs_chain_name> and processing.rs_chain_version = <processing.rs_chain_version>
+            rules:
+              log.trace.header.rs_chain_name: s2-l1
+              kubernetes.labels.spring-application-name : ^((?!ew-l1c).)*$
+          - query: processing.id in (select ili.processing_id from input_list_internal ili where ili.product_id in <input_product.id>) and processing.rs_chain_name = <processing.rs_chain_name> and processing.rs_chain_version = <processing.rs_chain_version>
+          
       -
         name: JobProcessing_Product-singleOutput
         mappings:
@@ -239,7 +244,7 @@ data:
             action: SUBSTRACT al1 al2
             to: output_product.generation_begin_date
           - from: log.trace.task.input[filename_strings]
-            action: FORMAT ^S[0-9][A-Z].+(?=.zip)$|^S[0-9][A-Z].+$ %1$s
+            action: FORMAT (?!(^S1.*(AUX_|AMH_|AMV_|MPL_ORB).*)|(S1.*(_OPER_REP_MP_MP__PDMC_|_OPER_REP__SUP___|_OPER_MPL_SP.{4}_PDMC_|_OPER_REP_STNACQ_.{4}_|_OPER_REP_STNUNV_.{4}_|_OPER_AM[VH_]_FAILUR_MPC__|_OPER_REP__MACP__).*\.(zip|ZIP))|((S2)(A|B|_)_(OPER|TEST)_((AUX|GIP)_[0-9A-Z_]{7})(.*)\.TGZ)|(S3[AB_]_([0-9a-zA-Z_]{9})AX_([0-9]{8}T[0-9]{6})_([0-9]{8}T[0-9]{6})_([0-9]{8}T[0-9]{6})_(_{17})_([0-9a-zA-Z_]{3})_(((O|F|R|D|_)_(NR|NT|ST|SN|NS|NN|AL|__)_([a-zA-Z0-9_]{3}))|_{8})\.SEN3\.(zip|ZIP))$)(S[0-9][A-Z].+(?=.zip)|S[0-9][A-Z].+$) %1$s
             to: input_product.filename
           - from: log.trace.task.status
             to: processing.status
@@ -272,7 +277,7 @@ data:
             entity: product
             restrict: output_list
         duplicate_processings:
-          - query: processing.id in (select ol.processing_id from output_list ol where ol.product_id in <output_product.id>) and processing.rs_chain_name = <processing.rs_chain_name> and processing.rs_chain_version = <processing.rs_chain_version>
+          - query: processing.id in (select ili.processing_id from input_list_internal ili where ili.product_id in <input_product.id>) and processing.rs_chain_name = <processing.rs_chain_name> and processing.rs_chain_version = <processing.rs_chain_version>
       -
         name: JobProcessing_Product-onlyMissingOutput
         mappings:
@@ -292,7 +297,7 @@ data:
           - from: log.trace.header.mission
             to: aux_data.mission
           - from: log.trace.task.input[filename_strings]
-            action: FORMAT ^S[0-9][A-Z].+(?=.zip)$|^S[0-9][A-Z].+$ %1$s
+            action: FORMAT (?!(^S1.*(AUX_|AMH_|AMV_|MPL_ORB).*)|(S1.*(_OPER_REP_MP_MP__PDMC_|_OPER_REP__SUP___|_OPER_MPL_SP.{4}_PDMC_|_OPER_REP_STNACQ_.{4}_|_OPER_REP_STNUNV_.{4}_|_OPER_AM[VH_]_FAILUR_MPC__|_OPER_REP__MACP__).*\.(zip|ZIP))|((S2)(A|B|_)_(OPER|TEST)_((AUX|GIP)_[0-9A-Z_]{7})(.*)\.TGZ)|(S3[AB_]_([0-9a-zA-Z_]{9})AX_([0-9]{8}T[0-9]{6})_([0-9]{8}T[0-9]{6})_([0-9]{8}T[0-9]{6})_(_{17})_([0-9a-zA-Z_]{3})_(((O|F|R|D|_)_(NR|NT|ST|SN|NS|NN|AL|__)_([a-zA-Z0-9_]{3}))|_{8})\.SEN3\.(zip|ZIP))$)(S[0-9][A-Z].+(?=.zip)|S[0-9][A-Z].+$) %1$s
             to: input_product.filename
           - from: log.trace.task.status
             to: processing.status

@@ -8,6 +8,7 @@ The repository also contains two FINOPS components:
 
 - [object-storage-exporter](#object-storage-exporter)
 - [resources-exporter](#resources-exporter)
+- [Grafana plugins](#grafana-plugin)
 
 ## RS-CORE Monitoring
 
@@ -25,6 +26,12 @@ The description of each component of RS-Core is described [here](./trace-process
 - Infrastructure : all the required tools (such as Kafka and PostgreSQL) are included in the RS infrastructure installation.  
   See  [Reference System Software Infrastructure](https://github.com/COPRS/infrastructure) for details.
 - In PostgreSQL, you have to create an empty database (for example: **monitoring**) with a user (and his password) having read/write access to it. This information will be updated in [RS-CORE configuration files](./rs-cores/MONITORING/Release_Note.md)
+
+Note : The rs-core monitoring will try to deploy itself in the monitoring namespace by default. However, this is only possible if you configured SCDF to use different namespace in stream deployments : <https://github.com/COPRS/infrastructure/blob/main/docs/user_manuals/how-to/RS%20Add-on%20-%20RS%20Core.md#use-different-namespaces-in-stream-deployments>. If you wish to change the default behavior and deploy the component in another namespace, edit the `namespace` property in the following file :
+
+- rs-cores/MONITORING/Executables/additional_resources/ConfigMap-filter.yaml
+- rs-cores/MONITORING/Executables/additional_resources/ConfigMap-ingestor.yaml
+- rs-cores/MONITORING/Executables/additional_resources/Secret-ingestor.yaml
 
 #### Build
 
@@ -73,7 +80,6 @@ Using the SCDF GUI, undeploy then destroy the stream relative to the RS-Core.
 ## FINOPS components
 
 [![Docker CI FINOPS](https://github.com/COPRS/monitoring/actions/workflows/docker-ci-finops.yml/badge.svg)](https://github.com/COPRS/monitoring/actions/workflows/docker-ci-finops.yml)
-
 
 [![Helm FINOPS](https://github.com/COPRS/monitoring/actions/workflows/helm-finops.yml/badge.svg)](https://github.com/COPRS/monitoring/actions/workflows/helm-finops.yml)
 
@@ -203,6 +209,7 @@ yarn install && yarn build && rm -rf node_modules
 ### Installation
 
 Update the default configuration of the grafana apps [following the infrastructure guide](https://github.com/COPRS/infrastructure/tree/main#review-and-change-the-default-configuration-to-match-your-needs) and add the two plugins :
+
 ```yaml
 custom_plugins:
   - name: cs-group-invalidations-completeness

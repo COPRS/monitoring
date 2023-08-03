@@ -106,13 +106,12 @@ public class TraceFilterProcessor
      * @return Updated structure
      */
     public String undecorate (String dirtyJson) {
-        // Intended to replace this call: dirtyJson.replaceAll("\\\\*\"", "\"")
-        // Avoid Denial of Service (DoS) with regex
-        while (dirtyJson.contains("\\\"")) {
-            dirtyJson = dirtyJson.replace("\\\"", "\"");
-        }
-
-        return dirtyJson.replace("\"{", "{")
+        // replaces \" with " (I get confused with the fact we have to escape \ and ")
+        return dirtyJson.replace("\\\"", "\"")
+                //in case there are embedded quotes in the Trace message String
+                .replace("\\\\\"", "\\\"")
+                .replace("\"{", "{")
                 .replace("}\"", "}");
+
     }
 }
